@@ -23,7 +23,7 @@ class Target
     #[ORM\Column(length: 500, nullable: true)]
     private ?string $image = null;
 
-    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
+    #[ORM\OneToOne(mappedBy: 'target', cascade: ['persist', 'remove'])]
     private ?Hunt $hunt = null;
 
     public function getId(): ?int
