@@ -31,9 +31,9 @@ class Hunt
     #[ORM\OneToOne(inversedBy: 'hunt', cascade: ['persist', 'remove'])]
     private ?Target $target = null;
 
+
     public function __construct()
     {
-
         $this->bounty = 0;
         $this->hunters = new ArrayCollection();
     }

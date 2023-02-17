@@ -12,8 +12,10 @@
     <h1>Hello {{ controller_name }}! ✅</h1>
     <ul>
     {% for hunt in hunts %}
-        <li>{{ hunt.name }}</li>
-        <li>{{ hunt. }}</li>
+        <li>
+            <p>{{ hunt.name }}</p>
+            <p>{{ hunt.target.name }}</p>
+        </li>
     {% endfor %}
     </ul>
 </div>
