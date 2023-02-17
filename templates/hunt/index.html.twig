@@ -13,8 +13,10 @@
 
     This friendly message is coming from:
     <ul>
-        <li>Your controller at <code><a href="{{ 'C:/Users/romai/OneDrive/Bureau/Gobelins/Symfony/projet/B3-Wanted/src/Controller/HuntController.php'|file_link(0) }}">src/Controller/HuntController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/Users/romai/OneDrive/Bureau/Gobelins/Symfony/projet/B3-Wanted/templates/hunt/index.html.twig'|file_link(0) }}">templates/hunt/index.html.twig</a></code></li>
+    {% for hunt in hunts %}
+        <li>{{ hunt.name }}</li>
+        <li>{{ hunt. }}</li>
+    {% endfor %}
     </ul>
 </div>
 {% endblock %}
