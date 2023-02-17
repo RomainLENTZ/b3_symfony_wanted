@@ -18,18 +18,20 @@ class Hunt
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
-    #[ORM\ManyToOne(inversedBy: 'hunts')]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?User $author = null;
+//    #[ORM\ManyToOne(inversedBy: 'hunts')]
+//    #[ORM\JoinColumn(nullable: false)]
+//    private ?User $author = null;
 
-    #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'hunts')]
-    private Collection $hunters;
+//    #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'hunts')]
+//    private Collection $hunters;
 
     #[ORM\Column]
     private ?int $bounty = null;
 
     public function __construct()
     {
+
+        $this->bounty = 0;
         $this->hunters = new ArrayCollection();
     }
 
