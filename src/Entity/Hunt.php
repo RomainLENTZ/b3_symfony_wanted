@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\HuntRepository;
+use DateTimeImmutable;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -31,9 +32,13 @@ class Hunt
     #[ORM\OneToOne(inversedBy: 'hunt', cascade: ['persist', 'remove'])]
     private ?Target $target = null;
 
+    #[ORM\Column(nullable: true)]
+    private ?\DateTimeImmutable $createdAt;
+
 
     public function __construct()
     {
+        $this->createdAt = new DateTimeImmutable();
         $this->bounty = 0;
         $this->hunters = new ArrayCollection();
     }
@@ -111,6 +116,18 @@ class Hunt
     public function setTarget(?Target $target): self
     {
         $this->target = $target;
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeImmutable
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(\DateTimeImmutable $createdAt): self
+    {
+        $this->createdAt = $createdAt;
 
         return $this;
     }
