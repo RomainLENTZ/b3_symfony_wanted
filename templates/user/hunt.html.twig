@@ -4,11 +4,18 @@
 {% endblock %}
 
 {% block body %}
-	<style>
-	
-	</style>
+	<style></style>
 	<div class="container">
-		
+		<ul>
+			{% for hunt in hunts %}
+				<li>
+					<p>{{ hunt.name }}</p>
+					<p>{{ hunt.bounty }}</p>
+					<p>{{ hunt.author }}</p>
+					<p>{{ hunt.target.name }}</p>
+				</li>
+			{% endfor %}
+		</ul>
+
 	</div>
 {% endblock %}
-
