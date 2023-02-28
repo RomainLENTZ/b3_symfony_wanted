@@ -7,20 +7,29 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
-#[ORM\Table(name: '`user`')]
-class User
+#[UniqueEntity(fields: ['username'], message: 'There is already an account with this username')]
+class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $name = null;
+    #[ORM\Column(length: 180, unique: true)]
+    private ?string $username = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column]
+    private array $roles = [];
+
+    /**
+     * @var string The hashed password
+     */
+    #[ORM\Column]
     private ?string $password = null;
 
     #[ORM\Column(length: 255)]
@@ -29,28 +38,17 @@ class User
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $description = null;
 
-    #[ORM\Column(length: 500, nullable: true)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $photo = null;
 
-    #[ORM\Column]
-    private ?bool $isPoliceman = null;
-
-    #[ORM\ManyToMany(targetEntity: self::class, inversedBy: 'users')]
-    private Collection $team;
-
-    #[ORM\ManyToMany(targetEntity: self::class, mappedBy: 'team')]
-    private Collection $users;
+    #[ORM\OneToMany(mappedBy: 'author', targetEntity: Hunt::class)]
+    private Collection $hunts;
 
     #[ORM\OneToOne(mappedBy: 'owner', cascade: ['persist', 'remove'])]
     private ?Wallet $wallet = null;
 
-    #[ORM\OneToMany(mappedBy: 'author', targetEntity: Hunt::class, orphanRemoval: true)]
-    private Collection $hunts;
-
     public function __construct()
     {
-        $this->team = new ArrayCollection();
-        $this->users = new ArrayCollection();
         $this->hunts = new ArrayCollection();
     }
 
@@ -59,19 +57,51 @@ class User
         return $this->id;
     }
 
-    public function getName(): ?string
+    public function getUsername(): ?string
     {
-        return $this->name;
+        return $this->username;
     }
 
-    public function setName(string $name): self
+    public function setUsername(string $username): self
     {
-        $this->name = $name;
+        $this->username = $username;
 
         return $this;
     }
 
-    public function getPassword(): ?string
+    /**
+     * A visual identifier that represents this user.
+     *
+     * @see UserInterface
+     */
+    public function getUserIdentifier(): string
+    {
+        return (string) $this->username;
+    }
+
+    /**
+     * @see UserInterface
+     */
+    public function getRoles(): array
+    {
+        $roles = $this->roles;
+        // guarantee every user at least has ROLE_USER
+        $roles[] = 'ROLE_USER';
+
+        return array_unique($roles);
+    }
+
+    public function setRoles(array $roles): self
+    {
+        $this->roles = $roles;
+
+        return $this;
+    }
+
+    /**
+     * @see PasswordAuthenticatedUserInterface
+     */
+    public function getPassword(): string
     {
         return $this->password;
     }
@@ -81,6 +111,15 @@ class User
         $this->password = $password;
 
         return $this;
+    }
+
+    /**
+     * @see UserInterface
+     */
+    public function eraseCredentials()
+    {
+        // If you store any temporary, sensitive data on the user, clear it here
+        // $this->plainPassword = null;
     }
 
     public function getEmail(): ?string
@@ -119,86 +158,6 @@ class User
         return $this;
     }
 
-    public function isIsPoliceman(): ?bool
-    {
-        return $this->isPoliceman;
-    }
-
-    public function setIsPoliceman(bool $isPoliceman): self
-    {
-        $this->isPoliceman = $isPoliceman;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, self>
-     */
-    public function getTeam(): Collection
-    {
-        return $this->team;
-    }
-
-    public function addTeam(self $team): self
-    {
-        if (!$this->team->contains($team)) {
-            $this->team->add($team);
-        }
-
-        return $this;
-    }
-
-    public function removeTeam(self $team): self
-    {
-        $this->team->removeElement($team);
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, self>
-     */
-    public function getUsers(): Collection
-    {
-        return $this->users;
-    }
-
-    public function addUser(self $user): self
-    {
-        if (!$this->users->contains($user)) {
-            $this->users->add($user);
-            $user->addTeam($this);
-        }
-
-        return $this;
-    }
-
-    public function removeUser(self $user): self
-    {
-        if ($this->users->removeElement($user)) {
-            $user->removeTeam($this);
-        }
-
-        return $this;
-    }
-
-    public function getWallet(): ?Wallet
-    {
-        return $this->wallet;
-    }
-
-    public function setWallet(Wallet $wallet): self
-    {
-        // set the owning side of the relation if necessary
-        if ($wallet->getOwner() !== $this) {
-            $wallet->setOwner($this);
-        }
-
-        $this->wallet = $wallet;
-
-        return $this;
-    }
-
     /**
      * @return Collection<int, Hunt>
      */
@@ -225,6 +184,28 @@ class User
                 $hunt->setAuthor(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getWallet(): ?Wallet
+    {
+        return $this->wallet;
+    }
+
+    public function setWallet(?Wallet $wallet): self
+    {
+        // unset the owning side of the relation if necessary
+        if ($wallet === null && $this->wallet !== null) {
+            $this->wallet->setOwner(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($wallet !== null && $wallet->getOwner() !== $this) {
+            $wallet->setOwner($this);
+        }
+
+        $this->wallet = $wallet;
 
         return $this;
     }
