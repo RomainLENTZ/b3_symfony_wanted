@@ -26,9 +26,10 @@ class UserController extends AbstractController
 
         $hunts = $user->getHunts();
 
-        dd($hunts[0]);
 
-        return $this->render('user/hunt.html.twig', [
+        dd($user->getHunts());
+
+        return $this->render('user/hunts.html.twig', [
             'hunts' => $hunts,
         ]);
     }
