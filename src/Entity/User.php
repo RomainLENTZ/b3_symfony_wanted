@@ -44,6 +44,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'author', targetEntity: Hunt::class)]
     private Collection $hunts;
 
+    #[ORM\ManyToMany(mappedBy: 'hunters', targetEntity: Hunt::class)]
+    private Collection $myHunts;
+
     #[ORM\OneToOne(mappedBy: 'owner', cascade: ['persist', 'remove'])]
     private ?Wallet $wallet = null;
 
@@ -171,6 +174,21 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         if (!$this->hunts->contains($hunt)) {
             $this->hunts->add($hunt);
             $hunt->setAuthor($this);
+        }
+
+        return $this;
+    }
+
+    public function getMyHunts(): Collection
+    {
+        return $this->myHunts;
+    }
+
+    public function addMyHunt(Hunt $hunt): self
+    {
+        if (!$this->myHunts->contains($hunt)) {
+            $this->myHunts->add($hunt);
+            $hunt->addHunter($this);
         }
 
         return $this;

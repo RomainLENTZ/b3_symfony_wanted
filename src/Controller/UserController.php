@@ -24,10 +24,14 @@ class UserController extends AbstractController
 
         $user = $userRepository->find($id);
 
-        $hunts = $user->getHunts();
+        if ($user == null)
+            return new Response(status: 404);
 
+        $hunts = $user->getMyHunts();
 
-        dd($user->getHunts());
+        if (count($hunts) > 0) {
+            $hunts[0]->getName();
+        }
 
         return $this->render('user/hunts.html.twig', [
             'hunts' => $hunts,

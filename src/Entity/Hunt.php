@@ -38,8 +38,10 @@ class Hunt
     #[ORM\ManyToOne(inversedBy: 'hunts')]
     private ?User $author = null;
 
-    #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'hunts')]
+    #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'myHunts')]
     private Collection $hunters;
+
+    
 
 
     public function __construct()
