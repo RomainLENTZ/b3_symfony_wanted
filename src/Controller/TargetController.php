@@ -18,6 +18,7 @@ class TargetController extends AbstractController
     #[Route('/', name: '_index_target')]
     public function index(): Response
     {
+        $this->denyAccessUnlessGranted('add', $this->getUser());
         $targetExemple = new Target();
         $targetExemple->setName("")
             ->setDescription("");

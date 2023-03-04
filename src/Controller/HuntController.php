@@ -8,6 +8,8 @@ use App\Repository\HuntRepository;
 use App\Repository\TargetRepository;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use \Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -25,8 +27,10 @@ class HuntController extends AbstractController
     }
 
     #[Route('/form', name: '_form_hunt', methods: ["GET"])]
-    public function form(Request $request ,HuntRepository $huntRepository): Response
+    public function form(Request $request): Response
     {
+        $this->denyAccessUnlessGranted('add', $this->getUser());
+        
         if($request->getSession()->getFlashBag()->peek('targetId', array()) == []){
             return $this->redirectToRoute('app_target_index_target');
         }
@@ -38,6 +42,7 @@ class HuntController extends AbstractController
         $form = $this->createForm(HuntType::class, $huntExemple);
         return $this->render('hunt/form.html.twig', ['form'=> $form->createView()]);
     }
+
 
     #[Route('/form/add', name: '_add_hunt', methods: ["POST"])]
     public function add(Request $request, EntityManagerInterface $entityManager, TargetRepository $targetRepository): Response{

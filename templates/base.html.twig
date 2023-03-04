@@ -17,6 +17,28 @@
         {% endblock %}
     </head>
     <body>
+    <header>
+        <nav class="bg-gray-800 shadow">
+            <div class="max-w-7xl mx-auto px-8">
+                <div class="flex items-center justify-between h-16">
+                    <div class="w-full justify-between flex items-center">
+                        <a class="flex-shrink-0 text-white" href="/">Wanted</a>
+                        <div class="d-flex">
+                            <a class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium" href="{{ path("app_hunt_index_hunt") }}">Hunts</a>
+                            {% if app.user %}
+                                <a class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium" href="{{ path("app_logout") }}">Logout</a>
+                            {% else %}
+                                <a class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium" href="{{ path("app_login") }}">Login</a>
+                            {% endif %}
+                            {% if app.user %}
+                                <h5>{{ app.user.username }}</h5>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
         {% block body %}{% endblock %}
     </body>
 </html>
