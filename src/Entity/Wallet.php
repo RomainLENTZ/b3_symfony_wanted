@@ -17,7 +17,6 @@ class Wallet
     private ?int $amount = null;
 
     #[ORM\OneToOne(inversedBy: 'wallet', cascade: ['persist', 'remove'])]
-    #[ORM\JoinColumn(nullable: false)]
     private ?User $owner = null;
 
     public function getId(): ?int

@@ -13,14 +13,27 @@ class HuntFixtures extends Fixture
 
     public function load(ObjectManager $manager)
     {
-        for ($i = 0; $i < 30; $i++){
+
+        $user = new User();
+        $user->setEmail("user-hunt" . "@gmail.com");
+        $user->setPassword("user-hunt");
+        $user->setUsername("user-hunt");
+
+        $manager->persist($user);
+
+        for ($i = 0; $i < 30; $i++) {
+
             $target = new Target();
-            $target->setName("Michel-0".$i);
+            $target->setName("Michel-0" . $i);
             $target->setDescription("Super violent");
+
             $hunt = new Hunt();
-            $hunt->setName("Wanted Notice ".$i);
-            $hunt->setBounty(rand(100,2000000));
+            $hunt->setName("Wanted Notice " . $i);
+            $hunt->setBounty(rand(100, 2000000));
             $hunt->setTarget($target);
+
+            $hunt->addHunter($user);
+
             $manager->persist($hunt);
         }
 

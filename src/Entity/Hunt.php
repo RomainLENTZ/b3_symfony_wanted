@@ -35,6 +35,14 @@ class Hunt
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $createdAt;
 
+    #[ORM\ManyToOne(inversedBy: 'hunts')]
+    private ?User $author = null;
+
+    #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'myHunts')]
+    private Collection $hunters;
+
+    
+
 
     public function __construct()
     {
