@@ -29,7 +29,10 @@ class HuntController extends AbstractController
     #[Route('/form', name: '_form_hunt', methods: ["GET"])]
     public function form(Request $request): Response
     {
-        $this->denyAccessUnlessGranted('add', $this->getUser());
+        if(!$this->isGranted('add', $this->getUser()))
+        {
+            return $this->redirectToRoute('app_access_denied');
+        }
         
         if($request->getSession()->getFlashBag()->peek('targetId', array()) == []){
             return $this->redirectToRoute('app_target_index_target');
