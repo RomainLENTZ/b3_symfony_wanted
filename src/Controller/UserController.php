@@ -7,6 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use \Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 
 class UserController extends AbstractController
 {
@@ -18,14 +19,18 @@ class UserController extends AbstractController
         ]);
     }
 
-    #[Route('/user/{id}/hunts', name: 'app_user')]
-    public function hunts(Request $request, UserRepository $userRepository, string $id): Response
+    #[Route('/user/hunts', name: 'app_user')]
+    public function hunts(Request $request, UserRepository $userRepository): Response
     {
 
-        $user = $userRepository->find($id);
+        $currentUser = $this->getUser();
 
-        if ($user == null)
+        if ($currentUser == null)
             return new Response(status: 404);
+
+        $user = $userRepository->find($currentUser->getId());
+
+        
 
         $hunts = $user->getMyHunts();
 
