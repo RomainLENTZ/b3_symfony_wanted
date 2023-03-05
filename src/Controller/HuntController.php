@@ -19,22 +19,32 @@ use Symfony\Component\Routing\Annotation\Route;
 class HuntController extends AbstractController
 {
     #[Route('/', name: '_index_hunt')]
-    public function index(Request $request ,HuntRepository $huntRepository): Response
+    public function index(Request $request, HuntRepository $huntRepository): Response
     {
         $hunts = $huntRepository->findAll();
 
-        return $this->render('hunt/index.html.twig', ['hunts'=>$hunts]);
+        return $this->render('hunt/index.html.twig', ['hunts' => $hunts]);
+    }
+
+    #[Route('/{id}', name: '_hunt_hunt')]
+    public function hunt(Request $request, HuntRepository $huntRepository, string $id): Response
+    {
+        $hunt = $huntRepository->find($id);
+
+        if ($hunt == null)
+            return new Response(status: 404);
+
+        return $this->render('hunt/hunt.html.twig', ['hunt' => $hunt]);
     }
 
     #[Route('/form', name: '_form_hunt', methods: ["GET"])]
     public function form(Request $request): Response
     {
-        if(!$this->isGranted('add', $this->getUser()))
-        {
+        if (!$this->isGranted('add', $this->getUser())) {
             return $this->redirectToRoute('app_access_denied');
         }
-        
-        if($request->getSession()->getFlashBag()->peek('targetId', array()) == []){
+
+        if ($request->getSession()->getFlashBag()->peek('targetId', array()) == []) {
             return $this->redirectToRoute('app_target_index_target');
         }
 
@@ -43,12 +53,13 @@ class HuntController extends AbstractController
             ->setBounty(0);
 
         $form = $this->createForm(HuntType::class, $huntExemple);
-        return $this->render('hunt/form.html.twig', ['form'=> $form->createView()]);
+        return $this->render('hunt/form.html.twig', ['form' => $form->createView()]);
     }
 
 
     #[Route('/form/add', name: '_add_hunt', methods: ["POST"])]
-    public function add(Request $request, EntityManagerInterface $entityManager, TargetRepository $targetRepository): Response{
+    public function add(Request $request, EntityManagerInterface $entityManager, TargetRepository $targetRepository): Response
+    {
         $hunt = new Hunt();
         $concernedTargetId = $request->getSession()->getFlashBag()->get('targetId');
         $hunt->setTarget($targetRepository->find($concernedTargetId[0]));
@@ -56,7 +67,7 @@ class HuntController extends AbstractController
         $huntForm = $this->createForm(HuntType::class, $hunt);
         $huntForm->handleRequest($request);
 
-        if($huntForm->isSubmitted() && $huntForm->isValid()){
+        if ($huntForm->isSubmitted() && $huntForm->isValid()) {
             $hunt = $huntForm->getData();
             $entityManager->persist($hunt);
             $entityManager->flush();
