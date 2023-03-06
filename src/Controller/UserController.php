@@ -7,25 +7,30 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use \Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 
+#[Route('/user', name: 'app_user')]
 class UserController extends AbstractController
 {
-    #[Route('/user', name: 'app_user')]
+    #[Route('/', name: '_index_user')]
     public function index(): Response
     {
         return $this->render('user/index.html.twig', [
-            'controller_name' => 'UserController',
         ]);
     }
 
-    #[Route('/user/{id}/hunts', name: 'app_user')]
-    public function hunts(Request $request, UserRepository $userRepository, string $id): Response
+    #[Route('/hunts', name: 'app_user')]
+    public function hunts(Request $request, UserRepository $userRepository): Response
     {
 
-        $user = $userRepository->find($id);
+        $currentUser = $this->getUser();
 
-        if ($user == null)
+        if ($currentUser == null)
             return new Response(status: 404);
+
+        $user = $userRepository->find($currentUser->getId());
+
+
 
         $hunts = $user->getMyHunts();
 
@@ -37,6 +42,7 @@ class UserController extends AbstractController
             'hunts' => $hunts,
         ]);
     }
+
 
 
 }
