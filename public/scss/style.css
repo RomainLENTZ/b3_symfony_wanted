@@ -1,0 +1,220 @@
+@import url("https://fonts.googleapis.com/css2?family=Sora:wght@100;200;300;400;500;600;700;800&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: inherit;
+}
+
+body, html {
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+h1, h2, h3, h4, h5, h6, a, p {
+  font-family: "Sora", sans-serif;
+  line-height: 100%;
+  letter-spacing: 0;
+  text-decoration: none;
+  margin: 0;
+}
+
+header {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 30px 75px;
+  background: #303030;
+}
+header .logo {
+  position: relative;
+  font-size: 45px;
+  text-decoration: none;
+  color: white;
+}
+header .right-part {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+header .right-part .hunt {
+  position: relative;
+  font-size: 22px;
+  text-decoration: none;
+  color: white;
+  margin-right: 75px;
+}
+header .right-part .hunt:before {
+  position: absolute;
+  content: "";
+  left: 0;
+  bottom: -3px;
+  height: 2px;
+  width: 0;
+  background: white;
+  transition: width 0.35s ease-in-out;
+}
+header .right-part .hunt:hover:before {
+  width: 100%;
+  transition: width 0.35s ease-in-out;
+}
+header .right-part .account {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  padding: 12px 18px;
+  border-radius: 5px;
+  background: white;
+}
+header .right-part .account .icon {
+  position: relative;
+  height: 25px;
+  width: 25px;
+  margin-right: 10px;
+}
+header .right-part .account .icon img {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+header .right-part .account p {
+  position: relative;
+  margin: 0;
+  font-size: 16px;
+  color: #303030;
+}
+
+#masthead {
+  position: relative;
+  height: calc(100vh - 100px);
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+#masthead h1 {
+  position: relative;
+  margin: 0 auto;
+  font-size: 100px;
+  color: #303030;
+}
+#masthead h3 {
+  position: relative;
+  margin: 20px auto 100px;
+  font-size: 20px;
+  font-weight: 300;
+  color: #303030;
+}
+#masthead a {
+  position: relative;
+  text-decoration: none;
+  font-size: 20px;
+  padding: 5px 10px;
+  border: 1px solid #303030;
+  border-radius: 5px;
+  background: white;
+  color: #303030;
+  cursor: pointer;
+  transition: all 0.35s ease-in-out;
+}
+#masthead a:hover {
+  background: #303030;
+  color: white;
+  transition: all 0.35s ease-in-out;
+}
+
+#login {
+  position: relative;
+  height: calc(100vh - 110px);
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+#login .login-wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
+  background: #303030;
+  border-radius: 5px;
+}
+#login .login-wrapper form {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+}
+#login .login-wrapper form label {
+  position: relative;
+  margin-bottom: 10px;
+  font-family: "Sora", sans-serif;
+  font-weight: 300;
+  font-size: 30px;
+  color: white;
+}
+#login .login-wrapper form input, #login .login-wrapper form input:-webkit-autofill,
+#login .login-wrapper form input:-webkit-autofill:hover,
+#login .login-wrapper form input:-webkit-autofill:focus,
+#login .login-wrapper form input:-webkit-autofill:active {
+  position: relative;
+  font-family: "Sora", sans-serif;
+  font-size: 20px !important;
+  height: 50px;
+  width: 300px;
+  outline: none;
+  border: none;
+  text-indent: 15px;
+  background-image: none !important;
+  background-color: white !important;
+  -webkit-text-fill-color: #303030 !important;
+  -webkit-box-shadow: 0 0 0 30px white inset !important;
+  color: #303030 !important;
+  border-radius: 5px;
+}
+#login .login-wrapper form .first {
+  margin-bottom: 30px;
+}
+#login .login-wrapper form button {
+  position: relative;
+  padding: 5px 13px;
+  margin: 30px auto 0;
+  font-family: "Sora", sans-serif;
+  font-size: 20px;
+  border: none;
+  border-radius: 5px;
+}
+#login .no-account {
+  position: relative;
+  margin: 20px auto 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+#login .no-account p, #login .no-account a {
+  position: relative;
+  font-size: 15px;
+  font-weight: 300;
+  text-decoration: none;
+  color: #303030;
+}
+#login .no-account a {
+  margin-left: 5px;
+  text-decoration: 1px solid underline;
+  text-underline-offset: 1px;
+}
+
+/*# sourceMappingURL=style.css.map */

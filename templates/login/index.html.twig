@@ -1,5 +1,7 @@
 {% extends 'base.html.twig' %}
 
+
+
 {% block title %}Hello LoginController!{% endblock %}
 
 {% block body %}
@@ -7,16 +9,36 @@
         <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
     {% endif %}
 
-    <form action="{{ path('app_login') }}" method="post">
-        <label for="username">Email:</label>
-        <input type="text" id="username" name="_username">
+    <section id="login">
 
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="_password">
+        <div class="login-wrapper">
 
-        {# If you want to control the URL the user is redirected to on success
+            <form action="{{ path('app_login') }}" method="post">
+
+                <label for="username">Email:</label>
+                <input type="text" id="username" name="_username" class="first" placeholder="Email">
+
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="_password" placeholder="Password">
+
+                {# If you want to control the URL the user is redirected to on success
         <input type="hidden" name="_target_path" value="/account"> #}
 
-        <button type="submit">login</button>
-    </form>
+                <button type="submit">login</button>
+
+            </form>
+
+        </div>
+
+        <div class="no-account">
+
+            <p>Vous n'avez pas de compte ?</p>
+
+            <a href="{{ path("app_register") }}">Créer un compte</a>
+
+        </div>
+
+    </section>
+
+
 {% endblock %}
