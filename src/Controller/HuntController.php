@@ -22,11 +22,21 @@ class HuntController extends AbstractController
     public function index(Request $request, HuntRepository $huntRepository): Response
     {
         $hunts = $huntRepository->findAll();
+        /* $me = $this->getUser();
+        function myHunts(Hunt $hunt)
+        {
+        global $me;
+        $hunters = $hunt->getHunters();
+        $hasHunt = $hunters->contains($me);
+        return $hasHunt;
+        }
+        $myHunt = array_map('myHunts', $hunts);
+        dd($myHunt); */
 
         return $this->render('hunt/index.html.twig', ['hunts' => $hunts]);
     }
 
-    #[Route('/{id}', name: '_hunt_hunt')]
+    #[Route('/{id}', name: '_hunt')]
     public function hunt(Request $request, HuntRepository $huntRepository, string $id): Response
     {
         $hunt = $huntRepository->find($id);
@@ -74,4 +84,17 @@ class HuntController extends AbstractController
         }
         return $this->redirectToRoute('app_hunt_index_hunt');
     }
+
+    #[Route('/user-get-hunt/{id}', name: '_user_get_hunt')]
+    public function getHunt(Request $request, HuntRepository $huntRepository, string $id): Response
+    {
+        $hunt = $huntRepository->find($id);
+
+        $hunt->addHunter($this->getUser());
+
+        $huntRepository->save($hunt, true);
+
+        return $this->redirectToRoute('app_hunt_index_hunt');
+    }
+
 }

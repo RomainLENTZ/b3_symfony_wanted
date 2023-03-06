@@ -1,37 +1,47 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HuntController!{% endblock %}
+{% block title %}Hello HuntController!
+{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
-<div class="container">
-    <div class="example-wrapper">
-        <h1>Toutes les chasses 🔫</h1>
-        <a class="btn btn-primary" href="{{ path('app_hunt_form_hunt') }}">Ajouter une chasse</a>
-        <ul>
-            <div class="row">
-                {% for hunt in hunts %}
-                    <div class="col-12">
-                        <li class="card my-4">
-                            <img class="card-img-top" src="{{ hunt.target.image }}">
-                            <div class="card-header">{{ hunt.name }}</div>
-                            <div class="card-body">
-                                <h5 class="card-title">{{ hunt.target.name }}</h5>
-                                <p class="card-title">{{ hunt.bounty|number_format(0,',', ' ') }} $</p>
-                                <p class="card-title">{{ hunt.createdAt|date('Y/m/d') }}</p>
-                                <div class="d-flex">
-                                    <a class="btn btn-success" href="#">Participer</a>
-                                    <a class="btn btn-danger mx-3" href="#">Détail</a>
-                                </div>
-                            </div>
-                        </li>
-                    </div>
-                {% endfor %}
-            </div>
-        </ul>
-    </div>
-</div>
+	<style>
+		.example-wrapper {
+			margin: 1em auto;
+			max-width: 800px;
+			width: 95%;
+			font: 18px / 1.5 sans-serif;
+		}
+		.example-wrapper code {
+			background: #F5F5F5;
+			padding: 2px 6px;
+		}
+	</style>
+	<div class="container">
+		<div class="example-wrapper">
+			<h1>Toutes les chasses 🔫</h1>
+			<a class="btn btn-primary" href="{{ path('app_hunt_form_hunt') }}">Ajouter une chasse</a>
+			<ul>
+				<div class="row">
+					{% for hunt in hunts %}
+						<div class="col-12">
+							<li class="card my-4">
+								<img class="card-img-top" src="{{ hunt.target.image }}">
+								<div class="card-header">{{ hunt.name }}</div>
+								<div class="card-body">
+									<h5 class="card-title">{{ hunt.target.name }}</h5>
+									<p class="card-title">{{ hunt.bounty|number_format(0,',', ' ') }}
+										$</p>
+									<p class="card-title">{{ hunt.createdAt|date('Y/m/d') }}</p>
+									<div class="d-flex">
+										<a class="btn btn-success" href="{{ path('app_hunt_user_get_hunt', {id : hunt.id}) }}">Participer</a>
+										<a class="btn btn-danger mx-3" href="#">Détail</a>
+									</div>
+								</div>
+							</li>
+						</div>
+					{% endfor %}
+				</div>
+			</ul>
+		</div>
+	</div>
 {% endblock %}

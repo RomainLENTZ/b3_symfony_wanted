@@ -9,17 +9,17 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 
+#[Route('/user', name: 'app_user')]
 class UserController extends AbstractController
 {
-    #[Route('/user', name: 'app_user')]
+    #[Route('/', name: '_index_user')]
     public function index(): Response
     {
         return $this->render('user/index.html.twig', [
-            'controller_name' => 'UserController',
         ]);
     }
 
-    #[Route('/user/hunts', name: 'app_user')]
+    #[Route('/hunts', name: 'app_user')]
     public function hunts(Request $request, UserRepository $userRepository): Response
     {
 
@@ -30,7 +30,7 @@ class UserController extends AbstractController
 
         $user = $userRepository->find($currentUser->getId());
 
-        
+
 
         $hunts = $user->getMyHunts();
 
@@ -42,6 +42,7 @@ class UserController extends AbstractController
             'hunts' => $hunts,
         ]);
     }
+
 
 
 }
