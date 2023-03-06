@@ -1,44 +1,74 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-        {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
-        {% block stylesheets %}
-            {{ encore_entry_link_tags('app') }}
-        {% endblock %}
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    <link rel="icon"
+          href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
+          integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w=="
+          crossorigin="anonymous"/>
+    <link rel="stylesheet" href="{{ asset('scss/style.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
+    {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
+    {% block stylesheets %}
+        {{ encore_entry_link_tags('app') }}
+    {% endblock %}
 
-        {% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
-        {% endblock %}
-    </head>
-    <body>
-    <header>
-        <nav class="bg-gray-800 shadow">
-            <div class="max-w-7xl mx-auto px-8">
-                <div class="flex items-center justify-between h-16">
-                    <div class="w-full justify-between flex items-center">
-                        <a class="flex-shrink-0 text-white" href="/">Wanted</a>
-                        <div class="d-flex">
-                            <a class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium" href="{{ path("app_hunt_index_hunt") }}">Hunts</a>
-                            {% if app.user %}
-                                <a class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium" href="{{ path("app_logout") }}">Logout</a>
-                            {% else %}
-                                <a class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium" href="{{ path("app_login") }}">Login</a>
-                            {% endif %}
-                            {% if app.user %}
-                                <h5>{{ app.user.username }}</h5>
-                            {% endif %}
+    {% block javascripts %}
+        {{ encore_entry_script_tags('app') }}
+    {% endblock %}
+</head>
+<body>
+<header>
+    <a class="logo" href="/">Wanted</a>
+
+    <div class="right-part">
+        <a class="hunt" href="{{ path("app_hunt_index_hunt") }}">Hunts</a>
+
+
+        {% if app.user %}
+        <a href="{{ path("app_logout") }}">
+            {% else %}
+            <a href="{{ path("app_login") }}">
+                {% endif %}
+
+                <div class="account">
+
+                    {% if app.user %}
+                        {% if app.user.roles[0] == "ROLE_HUNTER" %}
+                            <div class="icon">
+                                <img src="{{ asset('img/target.png') }}" alt="type of user">
+                            </div>
+                        {% else %}
+                            <div class="icon">
+                                <img src="{{ asset('img/police-badge.png') }}" alt="type of user">
+                            </div>
+                        {% endif %}
+                    {% else %}
+                        <div class="icon">
+                            <img src="{{ asset('img/login.png') }}" alt="type of user">
                         </div>
-                    </div>
+                    {% endif %}
+
+                    {% if app.user %}
+                        <p>{{ app.user.username }}</p>
+                    {% else %}
+                        <p>Login</p>
+                    {% endif %}
+
                 </div>
-            </div>
-        </nav>
-    </header>
-        {% block body %}{% endblock %}
-    </body>
+
+            </a>
+        </a>
+
+    </div>
+
+</header>
+{% block body %}{% endblock %}
+</body>
 </html>

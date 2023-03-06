@@ -1,0 +1,105 @@
+#login {
+  position: relative;
+  height: calc(100vh - 110px);
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  h2 {
+    position: relative;
+    margin: 0 auto 30px;
+    font-size: 50px;
+    color: $gray;
+  }
+
+  .login-wrapper {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+    background: $gray;
+    border-radius: 5px;
+
+    form {
+      position: relative;
+      height: 100%;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: start;
+
+      label {
+        position: relative;
+        margin-bottom: 10px;
+        font-family: "Sora", sans-serif;
+        font-weight: 300;
+        font-size: 30px;
+        color: white;
+      }
+
+      input, input:-webkit-autofill,
+      input:-webkit-autofill:hover,
+      input:-webkit-autofill:focus,
+      input:-webkit-autofill:active {
+        position: relative;
+        font-family: "Sora", sans-serif;
+        font-size: 20px !important;
+        height: 50px;
+        width: 300px;
+        outline: none;
+        border: none;
+        text-indent: 15px;
+        background-image: none !important;
+        background-color: white !important;
+        -webkit-text-fill-color: $gray !important;
+        -webkit-box-shadow: 0 0 0 30px white inset !important;
+        color: $gray !important;
+        border-radius: 5px;
+      }
+
+      .first {
+        margin-bottom: 30px;
+      }
+
+      button {
+        position: relative;
+        padding: 5px 13px;
+        margin: 30px auto 0;
+        font-family: "Sora", sans-serif;
+        font-size: 20px;
+        border: none;
+        border-radius: 5px;
+      }
+
+    }
+
+  }
+
+  .no-account {
+    position: relative;
+    margin: 20px auto 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    p, a {
+      position: relative;
+      font-size: 15px;
+      font-weight: 300;
+      text-decoration: none;
+      color: $gray;
+    }
+
+    a {
+      margin-left: 5px;
+      text-decoration: 1px solid underline;
+      text-underline-offset: 1px;
+    }
+
+  }
+
+}
