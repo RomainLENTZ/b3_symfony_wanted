@@ -17,8 +17,9 @@
 
             <form action="{{ path('app_login') }}" method="post">
 
-                <label for="username">Email:</label>
-                <input type="text" id="username" name="_username" class="first" placeholder="Email">
+<label for="username">Pseudo:</label>
+
+                <input type="text" id="username" name="_username" class="first" placeholder="Pseudo">
 
                 <label for="password">Password:</label>
                 <input type="password" id="password" name="_password" placeholder="Password">
@@ -36,7 +37,8 @@
 
             <p>Vous n'avez pas de compte ?</p>
 
-            <a href="{{ path("app_register") }}">Créer un compte</a>
+<a href="{{ path("app_register") }}">Pas de compte ? Inscrivez vous</a>
+
 
         </div>
 

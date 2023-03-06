@@ -21,7 +21,7 @@ class HuntType extends AbstractType
             ->add('bounty', IntegerType::class)
             ->add('save', SubmitType::class)
             ->setMethod("POST")
-            ->setAction('form/add')
+            ->setAction('save')
         ;
     }
 

@@ -1,48 +1,50 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Register{% endblock %}
+{% block title %}Register
+{% endblock %}
 
 {% block body %}
 
-    <section id="register">
+	<section id="register">
 
-        <h2>Register</h2>
+		<h2>Register</h2>
 
-        <div class="register-wrapper">
+		<div class="register-wrapper">
 
-            {{ form_start(registrationForm) }}
+			{{ form_start(registrationForm) }}
 
-            <div class="goRow">
-                {{ form_row(registrationForm.username) }}
-                {{ form_row(registrationForm.email) }}
-            </div>
+			<div class="goRow">
+				{{ form_row(registrationForm.username) }}
+				{{ form_row(registrationForm.email) }}
+			</div>
 
-            <div class="goRow">
-                {{ form_row(registrationForm.plainPassword, {
+			<div class="goRow">
+				{{ form_row(registrationForm.plainPassword, {
                     label: 'Password'
                 }) }}
-                {{ form_row(registrationForm.roles, {
+				{{ form_row(registrationForm.roles, {
                     label: 'Vous êtes :'
                 }) }}
-            </div>
+			</div>
 
-            {{ form_row(registrationForm.description, {
+			{{ form_row(registrationForm.description, {
                 label: 'Petite description (facultatif)'
             }) }}
 
-            <button type="submit">Register</button>
-            {{ form_end(registrationForm) }}
+			<button type="submit">Register</button>
+			{{ form_end(registrationForm) }}
 
-        </div>
+		</div>
 
-        <div class="no-account">
+		<div class="no-account">
 
-            <p>Vous avez pas de compte ?</p>
+			<p>Vous avez pas de compte ?</p>
 
-            <a href="{{ path("app_login") }}">Se connecter</a>
+			<a href="{{ path("app_login") }}">Déjà un compte ? Connectez vous</a>
 
-        </div>
 
-    </section>
+		</div>
+
+	</section>
 
 {% endblock %}
