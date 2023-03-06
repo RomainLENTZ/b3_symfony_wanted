@@ -34,7 +34,11 @@
 									<p class="card-title">{{ hunt.createdAt|date('Y/m/d') }}</p>
 									<div class="d-flex">
 										<a class="btn btn-success" href="{{ path('app_hunt_user_get_hunt', {id : hunt.id}) }}">Participer</a>
+
 										<a class="btn btn-danger mx-3" href="#">Détail</a>
+										{% if hunt.author == app.user %}
+											<a class="btn btn-warning" href="">Cloturer</a>
+										{% endif %}
 									</div>
 								</div>
 							</li>

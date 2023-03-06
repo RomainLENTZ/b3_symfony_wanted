@@ -47,8 +47,8 @@ class HuntController extends AbstractController
         return $this->render('hunt/hunt.html.twig', ['hunt' => $hunt]);
     }
 
-    #[Route('/form', name: '_form_hunt', methods: ["GET"])]
-    public function form(Request $request): Response
+    #[Route('/add/hunt', name: '_form_hunt', methods: ["GET"])]
+    public function formHunt(Request $request): Response
     {
         if (!$this->isGranted('add', $this->getUser())) {
             return $this->redirectToRoute('app_access_denied');
@@ -67,13 +67,13 @@ class HuntController extends AbstractController
     }
 
 
-    #[Route('/form/add', name: '_add_hunt', methods: ["POST"])]
+    #[Route('/add/save', name: '_add_hunt', methods: ["POST"])]
     public function add(Request $request, EntityManagerInterface $entityManager, TargetRepository $targetRepository): Response
     {
         $hunt = new Hunt();
         $concernedTargetId = $request->getSession()->getFlashBag()->get('targetId');
         $hunt->setTarget($targetRepository->find($concernedTargetId[0]));
-
+        $hunt->setAuthor($this->getUser());
         $huntForm = $this->createForm(HuntType::class, $hunt);
         $huntForm->handleRequest($request);
 
