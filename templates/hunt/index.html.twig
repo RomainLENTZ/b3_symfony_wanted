@@ -4,48 +4,104 @@
 {% endblock %}
 
 {% block body %}
-	<style>
-		.example-wrapper {
-			margin: 1em auto;
-			max-width: 800px;
-			width: 95%;
-			font: 18px / 1.5 sans-serif;
-		}
-		.example-wrapper code {
-			background: #F5F5F5;
-			padding: 2px 6px;
-		}
-	</style>
-	<div class="container">
-		<div class="example-wrapper">
-			<h1>Toutes les chasses 🔫</h1>
-			<a class="btn btn-primary" href="{{ path('app_hunt_form_hunt') }}">Ajouter une chasse</a>
-			<ul>
-				<div class="row">
-					{% for hunt in hunts %}
-						<div class="col-12">
-							<li class="card my-4">
-								<img class="card-img-top" src="{{ hunt.target.image }}">
-								<div class="card-header">{{ hunt.name }}</div>
-								<div class="card-body">
-									<h5 class="card-title">{{ hunt.target.name }}</h5>
-									<p class="card-title">{{ hunt.bounty|number_format(0,',', ' ') }}
-										$</p>
-									<p class="card-title">{{ hunt.createdAt|date('Y/m/d') }}</p>
-									<div class="d-flex">
-										<a class="btn btn-success" href="{{ path('app_hunt_user_get_hunt', {id : hunt.id}) }}">Participer</a>
+    <div class="hunt-wrapper">
 
-										<a class="btn btn-danger mx-3" href="#">Détail</a>
-										{% if hunt.author == app.user %}
-											<a class="btn btn-warning" href="">Cloturer</a>
-										{% endif %}
-									</div>
-								</div>
-							</li>
-						</div>
-					{% endfor %}
-				</div>
-			</ul>
-		</div>
-	</div>
+        <div class="top-part">
+
+            <h1>Toutes les chasses</h1>
+
+            {% if app.user %}
+                {% if app.user.roles[0] == "ROLE_POLICEMAN" %}
+                    <a href="{{ path('app_hunt_form_hunt') }}">Ajouter</a>
+                {% endif %}
+            {% endif %}
+
+        </div>
+
+        <div class="all-hunts">
+
+           {# {% for hunt in hunts %}
+
+
+                        <div class="card-body">
+                            <h5 class="card-title">{{ hunt.target.name }}</h5>
+                            <p class="card-title">{{ hunt.bounty|number_format(0,',', ' ') }}
+                                $</p>
+                            <p class="card-title">{{ hunt.createdAt|date('Y/m/d') }}</p>
+                            <div class="d-flex">
+                                <a class="btn btn-success"
+                                   href="{{ path('app_hunt_user_get_hunt', {id : hunt.id}) }}">Participer</a>
+
+                                <a class="btn btn-danger mx-3" href="#">Détail</a>
+                                {% if hunt.author == app.user %}
+                                    <a class="btn btn-warning" href="">Cloturer</a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </li>
+                </div>
+            {% endfor %} #}
+
+            {% for hunt in hunts %}
+
+                <div class="hunt">
+
+                    <div class="left-part">
+
+                        {% if hunt.target.image|length < 15 %}
+                            <img src="{{ asset('img/user.png') }}" alt="img of the hunt">
+                        {% else %}
+                            <img src="{{ hunt.target.image }}" alt="img of the hunt">
+                        {% endif %}
+
+                        <p class="date">{{ hunt.createdAt|date('Y/m/d') }}</p>
+
+                    </div>
+
+                    <div class="right-part">
+
+                        <div class="top-part">
+
+                            <div class="left-part">
+
+                                <h3 class="name">{{ hunt.target.name }}</h3>
+
+                                <h5 class="description">{{ hunt.target.description }}</h5>
+
+                            </div>
+
+                            <div class="right-part">
+
+                                <p class="price">{{ hunt.bounty|number_format(0,',', ' ') }}
+                                    $</p>
+
+                            </div>
+
+                        </div>
+
+                        <div class="bottom-part">
+
+                            {% if app.user %}
+                                {% if app.user.roles[0] == "ROLE_HUNTER" %}
+                                    <a href="{{ path('app_hunt_user_get_hunt', {id : hunt.id}) }}">Participer</a>
+                                {% endif %}
+                            {% endif %}
+
+                            <a href="#">Détails</a>
+
+                            {% if hunt.author == app.user %}
+                                <a href="">Cloturer</a>
+                            {% endif %}
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
 {% endblock %}

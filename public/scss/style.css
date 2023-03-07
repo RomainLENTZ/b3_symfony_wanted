@@ -338,4 +338,165 @@ header .right-part .account p {
   text-underline-offset: 1px;
 }
 
+.hunt-wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  margin: 0 auto;
+  padding: 100px 0;
+}
+@media screen and (max-width: 576px) {
+  .hunt-wrapper {
+    width: 100%;
+    padding: 35px 20px;
+  }
+}
+.hunt-wrapper .top-part {
+  position: relative;
+  margin-bottom: 75px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: start;
+}
+.hunt-wrapper .top-part h1 {
+  position: relative;
+  margin-right: 150px;
+  font-size: 50px;
+  color: #303030;
+}
+.hunt-wrapper .top-part a {
+  position: relative;
+  padding: 10px 15px;
+  font-family: "Sora", sans-serif;
+  font-size: 17px;
+  border: none;
+  border-radius: 5px;
+  background: #303030;
+  color: white;
+}
+.hunt-wrapper .all-hunts {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 1fr;
+  grid-column-gap: 30px;
+  grid-row-gap: 30px;
+  width: 100%;
+}
+@media screen and (max-width: 576px) {
+  .hunt-wrapper .all-hunts {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+.hunt-wrapper .all-hunts .hunt {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  border-radius: 5px;
+  background: #303030;
+}
+.hunt-wrapper .all-hunts .hunt .left-part {
+  position: relative;
+  border-radius: 5px 0 0 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  height: 100%;
+  width: 20%;
+  background: #303030;
+}
+.hunt-wrapper .all-hunts .hunt .left-part img {
+  position: relative;
+  margin-bottom: 20px;
+  height: 90px;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 5px;
+}
+.hunt-wrapper .all-hunts .hunt .left-part .date {
+  position: relative;
+  font-size: 13px;
+  color: white;
+  font-weight: 300;
+}
+.hunt-wrapper .all-hunts .hunt .right-part {
+  position: relative;
+  padding: 15px;
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+}
+.hunt-wrapper .all-hunts .hunt .right-part .top-part {
+  position: relative;
+  margin-bottom: 10px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: start;
+}
+.hunt-wrapper .all-hunts .hunt .right-part .top-part .left-part {
+  position: relative;
+  display: flex;
+  align-items: start;
+  flex-grow: 1;
+  flex-direction: column;
+  justify-content: start;
+  background: none;
+}
+.hunt-wrapper .all-hunts .hunt .right-part .top-part .left-part .name {
+  position: relative;
+  font-size: 40px;
+  color: white;
+  font-weight: 500;
+}
+.hunt-wrapper .all-hunts .hunt .right-part .top-part .left-part .description {
+  position: relative;
+  margin-top: 13px;
+  font-size: 18px;
+  color: white;
+  font-weight: 300;
+}
+.hunt-wrapper .all-hunts .hunt .right-part .top-part .right-part {
+  position: relative;
+  padding: 0;
+  height: 100%;
+  width: 30%;
+  flex-grow: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+  align-items: center;
+}
+.hunt-wrapper .all-hunts .hunt .right-part .top-part .right-part .price {
+  position: relative;
+  font-size: 19px;
+  color: white;
+}
+.hunt-wrapper .all-hunts .hunt .right-part .bottom-part {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+.hunt-wrapper .all-hunts .hunt .right-part .bottom-part a {
+  position: relative;
+  margin-right: 10px;
+  padding: 8px 12px;
+  font-family: "Sora", sans-serif;
+  font-size: 15px;
+  border: none;
+  border-radius: 5px;
+  background: white;
+  color: #303030;
+}
+.hunt-wrapper .all-hunts .hunt .right-part .bottom-part a:last-child {
+  margin-right: 0;
+}
+
 /*# sourceMappingURL=style.css.map */
