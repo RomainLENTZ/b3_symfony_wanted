@@ -18,22 +18,25 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/hunt', name: 'app_hunt')]
 class HuntController extends AbstractController
 {
+
+
+
     #[Route('/', name: '_index_hunt')]
     public function index(Request $request, HuntRepository $huntRepository): Response
     {
         $hunts = $huntRepository->findAll();
-        /* $me = $this->getUser();
-        function myHunts(Hunt $hunt)
-        {
-        global $me;
-        $hunters = $hunt->getHunters();
-        $hasHunt = $hunters->contains($me);
-        return $hasHunt;
-        }
-        $myHunt = array_map('myHunts', $hunts);
-        dd($myHunt); */
+        $me = $this->getUser();
 
-        return $this->render('hunt/index.html.twig', ['hunts' => $hunts]);
+        $myHunts = array_map(function (Hunt $hunt) use ($me) {
+            $hunters = $hunt->getHunters();
+            $hasHunt = $hunters->contains($me);
+            return $hasHunt;
+        }, $hunts);
+
+        // dd($myHunts);
+
+
+        return $this->render('hunt/index.html.twig', ['hunts' => $hunts, 'myHunts' => $myHunts]);
     }
 
     #[Route('/{id}', name: '_hunt')]
