@@ -4,18 +4,76 @@
 {% endblock %}
 
 {% block body %}
-	<style></style>
-	<div class="container">
-		<ul>
-			{% for hunt in hunts %}
-				<li>
-					<p>{{ hunt.name }}</p>
-					<p>{{ hunt.bounty }}</p>
-					<p>{{ hunt.author }}</p>
-					<p>{{ hunt.target.name }}</p>
-				</li>
-			{% endfor %}
-		</ul>
+    {#
+    <div class="container">
+        <ul>
+            {% for hunt in hunts %}
+                <li>
+                    <p>{{ hunt.name }}</p>
+                    <p>{{ hunt.bounty }}</p>
+                    <p>{{ hunt.author }}</p>
+                    <p>{{ hunt.target.name }}</p>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+    #}
 
-	</div>
+    <div class="hunt-wrapper">
+
+        <div class="top-part">
+
+            <h1>Mes chasses</h1>
+
+        </div>
+
+        <div class="all-hunts">
+
+            {% for hunt in hunts %}
+
+                <div class="hunt">
+
+                    <div class="left-part">
+
+                        {% if hunt.target.image|length < 15 %}
+                            <img src="{{ asset('img/user.png') }}" alt="img of the hunt">
+                        {% else %}
+                            <img src="{{ hunt.target.image }}" alt="img of the hunt">
+                        {% endif %}
+
+                        <p class="date">{{ hunt.createdAt|date('Y/m/d') }}</p>
+
+                    </div>
+
+                    <div class="right-part">
+
+                        <div class="top-part">
+
+                            <div class="left-part">
+
+                                <h3 class="name">{{ hunt.target.name }}</h3>
+
+                                <h5 class="description">{{ hunt.target.description }}</h5>
+
+                            </div>
+
+                            <div class="right-part">
+
+                                <p class="price">{{ hunt.bounty|number_format(0,',', ' ') }}
+                                    $</p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
 {% endblock %}
