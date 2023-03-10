@@ -19,19 +19,15 @@ class UserController extends AbstractController
         ]);
     }
 
-    #[Route('/hunts', name: 'app_user')]
+    #[Route('/hunts', name: '_hunts')]
     public function hunts(Request $request, UserRepository $userRepository): Response
     {
-
         $currentUser = $this->getUser();
 
         if ($currentUser == null)
             return new Response(status: 404);
 
         $user = $userRepository->find($currentUser->getId());
-
-
-
         $hunts = $user->getMyHunts();
 
         if (count($hunts) > 0) {
@@ -42,7 +38,4 @@ class UserController extends AbstractController
             'hunts' => $hunts,
         ]);
     }
-
-
-
 }

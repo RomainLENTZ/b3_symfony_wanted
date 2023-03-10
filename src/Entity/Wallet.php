@@ -19,6 +19,10 @@ class Wallet
     #[ORM\OneToOne(inversedBy: 'wallet', cascade: ['persist', 'remove'])]
     private ?User $owner = null;
 
+    public function __construct(){
+        $this->amount = 0;
+    }
+
     public function getId(): ?int
     {
         return $this->id;

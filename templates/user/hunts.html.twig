@@ -11,7 +11,9 @@
 				<li>
 					<p>{{ hunt.name }}</p>
 					<p>{{ hunt.bounty }}</p>
-					<p>{{ hunt.author }}</p>
+					{% if hunt.author is not null %}
+						<p>{{ hunt.author.username }}</p>
+					{% endif %}
 					<p>{{ hunt.target.name }}</p>
 				</li>
 			{% endfor %}

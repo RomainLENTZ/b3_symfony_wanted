@@ -52,6 +52,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function __construct()
     {
+        $this->wallet = new Wallet();
+        $this->wallet->setOwner($this);
         $this->hunts = new ArrayCollection();
     }
 

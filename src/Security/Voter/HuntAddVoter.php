@@ -13,10 +13,11 @@ use Symfony\Component\Security\Core\User\UserInterface;
 class HuntAddVoter extends Voter
 {
     public const ADD = 'add';
+    public const CLOSE = 'close';
 
     protected function supports(string $attribute, mixed $subject): bool
     {
-        return $attribute == self::ADD
+        return in_array($attribute, [self::ADD, self::CLOSE])
             && $subject instanceof User;
     }
 
@@ -29,13 +30,14 @@ class HuntAddVoter extends Voter
         }
 
         return match($attribute) {
-            self::ADD => $this->canAdd($user),
+            self::ADD => $this->checkIfPoliceman($user),
+            self::CLOSE => $this->checkIfPoliceman($user),
             default => throw new \LogicException('This code should not be reached!')
         };
 
     }
 
-    private function canAdd(User $user): bool
+    private function checkIfPoliceman(User $user): bool
     {
         return in_array('ROLE_POLICEMAN', $user->getRoles());
     }

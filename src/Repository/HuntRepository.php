@@ -39,6 +39,17 @@ class HuntRepository extends ServiceEntityRepository
         }
     }
 
+    public function findHuntHunters($huntId)
+    {
+        return $this->createQueryBuilder('hunt')
+            ->select('hunters.id')
+            ->innerJoin('hunt.hunters', 'hunters')
+            ->where('hunt.id = :val')
+            ->setParameter('val', $huntId)
+            ->getQuery()
+            ->getResult();
+    }
+
 //    /**
 //     * @return Hunt[] Returns an array of Hunt objects
 //     */

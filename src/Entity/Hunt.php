@@ -19,13 +19,6 @@ class Hunt
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
-//    #[ORM\ManyToOne(inversedBy: 'hunts')]
-//    #[ORM\JoinColumn(nullable: false)]
-//    private ?User $author = null;
-
-//    #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'hunts')]
-//    private Collection $hunters;
-
     #[ORM\Column]
     private ?int $bounty = null;
 
@@ -41,6 +34,9 @@ class Hunt
     #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'myHunts')]
     private Collection $hunters;
 
+    #[ORM\Column(nullable: true)]
+    private ?bool $isOpen = null;
+
     
 
 
@@ -48,6 +44,7 @@ class Hunt
     {
         $this->createdAt = new DateTimeImmutable();
         $this->bounty = 0;
+        $this->isOpen = true;
         $this->hunters = new ArrayCollection();
     }
 
@@ -136,6 +133,30 @@ class Hunt
     public function setCreatedAt(\DateTimeImmutable $createdAt): self
     {
         $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    public function getStatut(): ?string
+    {
+        return $this->statut;
+    }
+
+    public function setStatut(?string $statut): self
+    {
+        $this->statut = $statut;
+
+        return $this;
+    }
+
+    public function isIsOpen(): ?bool
+    {
+        return $this->isOpen;
+    }
+
+    public function setIsOpen(?bool $isOpen): self
+    {
+        $this->isOpen = $isOpen;
 
         return $this;
     }
