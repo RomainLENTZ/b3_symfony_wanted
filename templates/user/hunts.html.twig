@@ -7,15 +7,32 @@
 	<style></style>
 	<div class="container">
 		<ul>
+			<h1>Chasse en cours ⚡</h1>
 			{% for hunt in hunts %}
-				<li>
-					<p>{{ hunt.name }}</p>
-					<p>{{ hunt.bounty }}</p>
-					{% if hunt.author is not null %}
-						<p>{{ hunt.author.username }}</p>
-					{% endif %}
-					<p>{{ hunt.target.name }}</p>
-				</li>
+				{% if hunt.isOpen %}
+					<li>
+						<p>{{ hunt.name }}</p>
+						<p>{{ hunt.bounty }}</p>
+						{% if hunt.author is not null %}
+							<p>{{ hunt.author.username }}</p>
+						{% endif %}
+						<p>{{ hunt.target.name }}</p>
+					</li>
+				{% endif %}
+			{% endfor %}
+
+			<h1>Chasse terminée</h1>
+			{% for hunt in hunts %}
+				{% if not hunt.isOpen %}
+					<li>
+						<p>{{ hunt.name }}</p>
+						<p>{{ hunt.bounty }}</p>
+						{% if hunt.author is not null %}
+							<p>{{ hunt.author.username }}</p>
+						{% endif %}
+						<p>{{ hunt.target.name }}</p>
+					</li>
+				{% endif %}
 			{% endfor %}
 		</ul>
 
