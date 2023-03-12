@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HuntController!{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1>Cloturer la chasse : {{ hunt.name }}</h1>
+        <p>Veuillez séléctionner un chasseur a qui attribuer la prime de {{ hunt.bounty }} $</p>
+        <p>Si personne na réussi a capturer et que vous souhaitez tout de meme cloturer la chasse séléctionner "Aucun"</p>
+        <form action="{{ path('app_hunt_close_hunt_proceed') }}" method="post">
+            <input type="hidden" id="huntId" name="huntId" value="{{ hunt.id }}"></input>
+            <select name="hunters" id="hunters">
+                <option value="-1">Aucun</option>
+                {% for hunter in hunters %}
+                    <option value="{{ hunter.id }}">{{ hunter.username }}</option>
+                {% endfor %}
+            </select>
+            <button type="submit">Cloturer la chasse et attribuer la prime ?</button>
+        </form>
+    </div>
+{% endblock %}

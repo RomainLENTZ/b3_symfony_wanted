@@ -4,6 +4,7 @@
 {% endblock %}
 
 {% block body %}
+
     {#
     <div class="container">
         <ul>
@@ -23,13 +24,14 @@
 
         <div class="top-part">
 
-            <h1>Mes chasses</h1>
+            <h1>Chasses en cours ⚡</h1>
 
         </div>
 
         <div class="all-hunts">
 
             {% for hunt in hunts %}
+                {% if hunt.isOpen %}
 
                 <div class="hunt">
 
@@ -70,10 +72,100 @@
 
                 </div>
 
+                {% endif %}
+            {% endfor %}
+
+        </div>
+
+        <div class="top-part">
+
+            <h1>Chasses terminées</h1>
+
+        </div>
+
+        <div class="all-hunts">
+
+            {% for hunt in hunts %}
+                {% if not hunt.isOpen %}
+
+                    <div class="hunt">
+
+                        <div class="left-part">
+
+                            {% if hunt.target.image|length < 15 %}
+                                <img src="{{ asset('img/user.png') }}" alt="img of the hunt">
+                            {% else %}
+                                <img src="{{ hunt.target.image }}" alt="img of the hunt">
+                            {% endif %}
+
+                            <p class="date">{{ hunt.createdAt|date('Y/m/d') }}</p>
+
+                        </div>
+
+                        <div class="right-part">
+
+                            <div class="top-part">
+
+                                <div class="left-part">
+
+                                    <h3 class="name">{{ hunt.target.name }}</h3>
+
+                                    <h5 class="description">{{ hunt.target.description }}</h5>
+
+                                </div>
+
+                                <div class="right-part">
+
+                                    <p class="price">{{ hunt.bounty|number_format(0,',', ' ') }}
+                                        $</p>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                {% endif %}
             {% endfor %}
 
         </div>
 
     </div>
+
+{#
+	<div class="container">
+		<ul>
+			<h1>Chasse en cours ⚡</h1>
+			{% for hunt in hunts %}
+				{% if hunt.isOpen %}
+					<li>
+						<p>{{ hunt.name }}</p>
+						<p>{{ hunt.bounty }}</p>
+						{% if hunt.author is not null %}
+							<p>{{ hunt.author.username }}</p>
+						{% endif %}
+						<p>{{ hunt.target.name }}</p>
+					</li>
+				{% endif %}
+			{% endfor %}
+
+			<h1>Chasse terminées</h1>
+			{% for hunt in hunts %}
+				{% if not hunt.isOpen %}
+					<li>
+						<p>{{ hunt.name }}</p>
+						<p>{{ hunt.bounty }}</p>
+						{% if hunt.author is not null %}
+							<p>{{ hunt.author.username }}</p>
+						{% endif %}
+						<p>{{ hunt.target.name }}</p>
+					</li>
+				{% endif %}
+			{% endfor %}
+		</ul>
+
+#}
 
 {% endblock %}
