@@ -5,21 +5,6 @@
 
 {% block body %}
 
-    {#
-    <div class="container">
-        <ul>
-            {% for hunt in hunts %}
-                <li>
-                    <p>{{ hunt.name }}</p>
-                    <p>{{ hunt.bounty }}</p>
-                    <p>{{ hunt.author }}</p>
-                    <p>{{ hunt.target.name }}</p>
-                </li>
-            {% endfor %}
-        </ul>
-    </div>
-    #}
-
     <div class="hunt-wrapper">
 
         <div class="top-part">
@@ -31,6 +16,7 @@
         <div class="all-hunts">
 
             {% for hunt in hunts %}
+
                 {% if hunt.isOpen %}
 
                 <div class="hunt">

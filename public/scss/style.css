@@ -352,6 +352,17 @@ header .right-part .account p {
     padding: 35px 20px;
   }
 }
+.hunt-wrapper .goBack {
+  position: relative;
+  width: fit-content;
+  margin-bottom: 50px;
+  padding: 10px 18px;
+  border-radius: 5px;
+  font-family: "Sora", sans-serif;
+  font-size: 23px;
+  color: white;
+  background: #303030;
+}
 .hunt-wrapper .top-part {
   position: relative;
   margin-bottom: 75px;
@@ -387,7 +398,8 @@ header .right-part .account p {
 }
 @media screen and (max-width: 576px) {
   .hunt-wrapper .all-hunts {
-    grid-template-columns: repeat(1, 1fr);
+    display: grid;
+    grid-template-columns: repeat(1, 1fr) !important;
   }
 }
 .hunt-wrapper .all-hunts .hunt {
@@ -397,6 +409,25 @@ header .right-part .account p {
   width: 100%;
   border-radius: 5px;
   background: #303030;
+}
+.hunt-wrapper .all-hunts .hunt .isMyHunts {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 3px;
+  bottom: 10px;
+  right: 10px;
+  height: 23px;
+  width: 23px;
+  background: white;
+  border-radius: 5px;
+}
+.hunt-wrapper .all-hunts .hunt .isMyHunts img {
+  position: relative;
+  top: 3px;
+  height: 100%;
+  width: 100%;
 }
 .hunt-wrapper .all-hunts .hunt .left-part {
   position: relative;
@@ -494,9 +525,63 @@ header .right-part .account p {
   border-radius: 5px;
   background: white;
   color: #303030;
+  transition: all 0.35s ease-in-out;
 }
 .hunt-wrapper .all-hunts .hunt .right-part .bottom-part a:last-child {
   margin-right: 0;
+}
+.hunt-wrapper .all-hunts .hunt .right-part .bottom-part a:hover {
+  background: #303030;
+  color: white;
+}
+
+.single-hunt {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.single-hunt .left-part {
+  position: relative;
+  padding: 20px;
+  height: 250px;
+  width: 250px;
+  border-radius: 5px;
+  overflow: hidden;
+  background: #303030;
+}
+.single-hunt .left-part img {
+  position: relative;
+  border-radius: 5px;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+.single-hunt .right-part {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  margin-left: 50px;
+}
+.single-hunt .right-part p {
+  position: relative;
+  margin-bottom: 20px;
+  font-family: "Sora", sans-serif;
+  line-height: 120%;
+  font-size: 20px;
+  color: #303030;
+  max-width: 700px;
+}
+.single-hunt .right-part p span {
+  position: relative;
+  padding: 3px 7px;
+  background: #303030;
+  border-radius: 5px;
+  color: white;
+  margin-right: 10px;
+}
+.single-hunt .right-part p:first-line {
+  line-height: 150%;
 }
 
 /*# sourceMappingURL=style.css.map */
