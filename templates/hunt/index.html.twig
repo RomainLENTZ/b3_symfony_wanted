@@ -87,7 +87,7 @@
 
 							<a href="#">Détails</a>
 
-							{% if hunt.author == app.user %}
+							{% if hunt.author is not null and hunt.author == app.user %}
 								<a href="">Cloturer</a>
 							{% endif %}
 

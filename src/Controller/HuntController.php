@@ -83,6 +83,7 @@ class HuntController extends AbstractController
             $entityManager->persist($hunt);
             $entityManager->flush();
         }
+
         return $this->redirectToRoute('app_hunt_index_hunt');
     }
 
