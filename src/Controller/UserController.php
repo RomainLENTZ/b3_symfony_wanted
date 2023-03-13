@@ -28,6 +28,23 @@ class UserController extends AbstractController
             return new Response(status: 404);
 
         $user = $userRepository->find($currentUser->getId());
+
+        $userRole = $user->getRoles();
+
+
+        if (in_array("ROLE_POLICEMAN", $userRole)) {
+            $hunts = $user->getHunts();
+            if (count($hunts) > 0) {
+                $hunts[0]->getName();
+            }
+
+
+            return $this->render('user/hunts.html.twig', [
+                'hunts' => $hunts,
+                "role" => $userRole[0]
+            ]);
+        }
+
         $hunts = $user->getMyHunts();
 
         if (count($hunts) > 0) {
@@ -36,6 +53,7 @@ class UserController extends AbstractController
 
         return $this->render('user/hunts.html.twig', [
             'hunts' => $hunts,
+            "role" => $userRole[0]
         ]);
     }
 }
