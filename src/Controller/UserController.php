@@ -20,8 +20,6 @@ class UserController extends AbstractController
     {
         if($this->getUser() != null) {
             $editForm = $this->createForm(EditProfileType::class, $this->getUser());
-
-
             return $this->render('user/index.html.twig', [ 'form' => $editForm->createView()
             ]);
         }
@@ -32,26 +30,28 @@ class UserController extends AbstractController
     #[Route('/edit', name: '_edit')]
     public function editProfile(Request $request, EntityManagerInterface $entityManager, UserPasswordHasherInterface $userPasswordHasher ): Response
     {
-        $userPassword = $this->getUser()->getPassword();
-        $user = $this->getUser();
-        $editForm = $this->createForm(EditProfileType::class, $this->getUser());
-        $editForm->handleRequest($request);
+        if($this->getUser() != null) {
+            $userPassword = $this->getUser()->getPassword();
+            $user = $this->getUser();
+            $editForm = $this->createForm(EditProfileType::class, $this->getUser());
+            $editForm->handleRequest($request);
 
-        if ($editForm->isSubmitted() && $editForm->isValid()) {
-            if(!empty($editForm->getData()->getPassword())){
-                $encodedPassword = $userPasswordHasher->hashPassword($this->getUser(), $editForm->getData()->getPassword());
-                $user->setPassword($encodedPassword);
+            if ($editForm->isSubmitted() && $editForm->isValid()) {
+                if (!empty($editForm->getData()->getPassword())) {
+                    $encodedPassword = $userPasswordHasher->hashPassword($this->getUser(), $editForm->getData()->getPassword());
+                    $user->setPassword($encodedPassword);
+                } else {
+                    $user->setPassword($userPassword);
+                }
+
+                $entityManager->persist($user);
+                $entityManager->flush();
             }
 
-            else{
-                $user->setPassword($userPassword);
-            }
-
-            $entityManager->persist($user);
-            $entityManager->flush();
+            return $this->redirectToRoute('app_hunt_index_hunt');
         }
 
-        return $this->redirectToRoute('app_hunt_index_hunt');
+        return $this->redirectToRoute('app_login');
     }
 
     #[Route('/hunts', name: '_hunts')]
@@ -60,7 +60,7 @@ class UserController extends AbstractController
         $currentUser = $this->getUser();
 
         if ($currentUser == null)
-            return new Response(status: 404);
+            return $this->redirectToRoute('app_login');
 
         $user = $userRepository->find($currentUser->getId());
         $hunts = $user->getMyHunts();
