@@ -387,6 +387,9 @@ header .right-part .account p {
   background: #303030;
   color: white;
 }
+.hunt-wrapper .top-part.huntPassed {
+  margin-top: 100px;
+}
 .hunt-wrapper .all-hunts {
   position: relative;
   display: grid;
