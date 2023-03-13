@@ -51,8 +51,7 @@
 										$</p>
 
 									{% if role == "ROLE_POLICEMAN" %}
-
-										<a href="">Cloturer</a>
+										<a href="{{ path('app_hunt_close_hunt', {id : hunt.id}) }}">Cloturer</a>
 									{% endif %}
 
 
