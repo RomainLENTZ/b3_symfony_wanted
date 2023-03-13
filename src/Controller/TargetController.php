@@ -35,6 +35,12 @@ class TargetController extends AbstractController
 
     #[Route('/add', name: '_add_target', methods: ["POST"])]
     public function add(Request $request, EntityManagerInterface $entityManager): Response{
+
+        if(!$this->isGranted('add', $this->getUser()))
+        {
+            return $this->redirectToRoute('app_access_denied');
+        }
+
         $target = new Target();
 
         $targetForm = $this->createForm(TargetType::class, $target);

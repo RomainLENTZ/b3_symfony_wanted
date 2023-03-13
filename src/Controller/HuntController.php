@@ -22,7 +22,7 @@ class HuntController extends AbstractController
     #[Route('/', name: '_index_hunt')]
     public function index(Request $request, HuntRepository $huntRepository): Response
     {
-        $hunts = $huntRepository->findAll();
+        $hunts = $huntRepository->findBy([],['createdAt' => 'DESC']);
         $me = $this->getUser();
 
         $myHunts = array_map(function (Hunt $hunt) use ($me) {
@@ -71,6 +71,10 @@ class HuntController extends AbstractController
     #[Route('/add/save', name: '_add_hunt', methods: ["POST"])]
     public function add(Request $request, EntityManagerInterface $entityManager, TargetRepository $targetRepository): Response
     {
+        if (!$this->isGranted('add', $this->getUser())) {
+            return $this->redirectToRoute('app_access_denied');
+        }
+
         $hunt = new Hunt();
         $concernedTargetId = $request->getSession()->getFlashBag()->get('targetId');
         $hunt->setTarget($targetRepository->find($concernedTargetId[0]));
@@ -83,6 +87,7 @@ class HuntController extends AbstractController
             $entityManager->persist($hunt);
             $entityManager->flush();
         }
+
         return $this->redirectToRoute('app_hunt_index_hunt');
     }
 
