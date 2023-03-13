@@ -73,7 +73,7 @@
 
 							<a href="{{ path('app_hunt_hunt', {id : hunt.id}) }}">Détails</a>
 
-							{% if hunt.author == app.user %}
+							{% if hunt.author is not null and hunt.author == app.user %}
 								<a href="">Cloturer</a>
 							{% endif %}
 
