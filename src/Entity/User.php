@@ -47,15 +47,26 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\ManyToMany(mappedBy: 'hunters', targetEntity: Hunt::class)]
     private Collection $myHunts;
 
+    // #[ORM\ManyToMany(mappedBy: 'teammates', targetEntity: User::class)]
+    // private Collection $teammates;
+
     #[ORM\OneToOne(mappedBy: 'owner', cascade: ['persist', 'remove'])]
     private ?Wallet $wallet = null;
 
+    #[ORM\ManyToMany(targetEntity: self::class, inversedBy: 'users')]
+    private Collection $teammates;
+
+    #[ORM\ManyToMany(targetEntity: self::class, mappedBy: 'teammates')]
+    private Collection $users;
+
     public function __construct()
     {
-        $this->description= "";
+        $this->description = "";
         $this->wallet = new Wallet();
         $this->wallet->setOwner($this);
         $this->hunts = new ArrayCollection();
+        $this->teammates = new ArrayCollection();
+        $this->users = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -187,6 +198,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->myHunts;
     }
 
+    // public function getTeammates(): Collection
+    // {
+    //     return $this->teammates;
+    // }
+
     public function addMyHunt(Hunt $hunt): self
     {
         if (!$this->myHunts->contains($hunt)) {
@@ -196,6 +212,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
+
+    // public function addTeammate(User $user): self
+    // {
+    //     if (!$this->teammates->contains($user)) {
+    //         $this->teammates->add($user);
+    //         $user->addTeammate($this);
+    //     }
+
+    //     return $this;
+    // }
 
     public function removeHunt(Hunt $hunt): self
     {
@@ -227,6 +253,57 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         }
 
         $this->wallet = $wallet;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, self>
+     */
+    public function getTeammates(): Collection
+    {
+        return $this->teammates;
+    }
+
+    public function addTeammate(self $teammate): self
+    {
+        if (!$this->teammates->contains($teammate)) {
+            $this->teammates->add($teammate);
+        }
+
+        return $this;
+    }
+
+    public function removeTeammate(self $teammate): self
+    {
+        $this->teammates->removeElement($teammate);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, self>
+     */
+    public function getUsers(): Collection
+    {
+        return $this->users;
+    }
+
+    public function addUser(self $user): self
+    {
+        if (!$this->users->contains($user)) {
+            $this->users->add($user);
+            $user->addTeammate($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUser(self $user): self
+    {
+        if ($this->users->removeElement($user)) {
+            $user->removeTeammate($this);
+        }
 
         return $this;
     }
