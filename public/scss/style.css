@@ -82,8 +82,7 @@ header .right-part .account .icon img {
   position: relative;
   height: 100%;
   width: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
 }
 header .right-part .account p {
   position: relative;
@@ -97,39 +96,62 @@ header .right-part .account p {
   height: calc(100vh - 100px);
   width: 100vw;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
 }
-#masthead h1 {
+#masthead .left-part {
   position: relative;
-  margin: 0 auto;
-  font-size: 100px;
+  display: flex;
+  flex-direction: column;
+}
+#masthead .left-part h1 {
+  position: relative;
+  font-size: 115px;
+  text-align: left;
   color: #303030;
 }
-#masthead h3 {
+#masthead .left-part h3 {
   position: relative;
-  margin: 20px auto 100px;
-  font-size: 20px;
+  max-width: 550px;
+  margin: 10px auto 75px;
+  font-size: 25px;
   font-weight: 300;
+  line-height: 110%;
+  text-align: left;
   color: #303030;
 }
-#masthead a {
+#masthead .left-part a {
   position: relative;
+  width: fit-content;
   text-decoration: none;
-  font-size: 20px;
-  padding: 5px 10px;
-  border: 1px solid #303030;
+  font-size: 25px;
+  padding: 10px 18px;
+  border: 2px solid #303030;
   border-radius: 5px;
-  background: white;
-  color: #303030;
+  background: #303030;
+  color: white;
   cursor: pointer;
   transition: all 0.35s ease-in-out;
 }
-#masthead a:hover {
-  background: #303030;
-  color: white;
+#masthead .left-part a:hover {
+  background: transparent;
+  color: #303030;
   transition: all 0.35s ease-in-out;
+}
+#masthead .right-part {
+  position: relative;
+  height: auto;
+  width: 40vw;
+  background: #303030;
+  border-radius: 5px;
+  overflow: hidden;
+}
+#masthead .right-part img {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
 }
 
 #login {
@@ -220,8 +242,7 @@ header .right-part .account p {
 }
 #login .no-account a {
   margin-left: 5px;
-  -webkit-text-decoration: 1px solid underline;
-          text-decoration: 1px solid underline;
+  text-decoration: 1px solid underline;
   text-underline-offset: 1px;
 }
 
@@ -310,7 +331,6 @@ header .right-part .account p {
   justify-content: space-between;
 }
 #register .register-wrapper form .goRow div {
-  height: -moz-fit-content;
   height: fit-content;
   width: 325px;
   padding: 0;
@@ -337,8 +357,7 @@ header .right-part .account p {
 }
 #register .no-account a {
   margin-left: 5px;
-  -webkit-text-decoration: 1px solid underline;
-          text-decoration: 1px solid underline;
+  text-decoration: 1px solid underline;
   text-underline-offset: 1px;
 }
 
@@ -358,7 +377,6 @@ header .right-part .account p {
 }
 .hunt-wrapper .goBack {
   position: relative;
-  width: -moz-fit-content;
   width: fit-content;
   margin-bottom: 50px;
   padding: 10px 18px;
@@ -454,8 +472,7 @@ header .right-part .account p {
   margin-bottom: 20px;
   height: 90px;
   width: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
   border-radius: 5px;
 }
 .hunt-wrapper .all-hunts .hunt .left-part .date {
@@ -564,8 +581,7 @@ header .right-part .account p {
   border-radius: 5px;
   height: 100%;
   width: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
 }
 .single-hunt .right-part {
   position: relative;
@@ -592,4 +608,6 @@ header .right-part .account p {
 }
 .single-hunt .right-part p:first-line {
   line-height: 150%;
-}/*# sourceMappingURL=style.css.map */
+}
+
+/*# sourceMappingURL=style.css.map */
