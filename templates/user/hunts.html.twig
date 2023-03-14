@@ -5,6 +5,13 @@
 
 {% block body %}
 
+
+	{% if app.user.wallet is not null %}
+		<div>
+			<h3>Argent disponible dans votre portefeuil</h3>
+			{{ app.user.wallet.amount }} €
+		</div>
+	{% endif %}
 	<div class="hunt-wrapper">
 
 		<div class="top-part">

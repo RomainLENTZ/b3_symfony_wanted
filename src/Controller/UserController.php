@@ -23,7 +23,6 @@ class UserController extends AbstractController
             return $this->render('user/index.html.twig', [ 'form' => $editForm->createView()
             ]);
         }
-
         return $this->redirectToRoute('app_login');
     }
 
@@ -76,7 +75,7 @@ class UserController extends AbstractController
 
             return $this->render('user/hunts.html.twig', [
                 'hunts' => $hunts,
-                "role" => $userRole[0]
+                "role" => $userRole[0],
             ]);
         }
 
