@@ -18,18 +18,19 @@ class UserController extends AbstractController
     #[Route('/', name: '_index_user')]
     public function index(): Response
     {
-        if($this->getUser() != null) {
+        if ($this->getUser() != null) {
             $editForm = $this->createForm(EditProfileType::class, $this->getUser());
-            return $this->render('user/index.html.twig', [ 'form' => $editForm->createView()
+            return $this->render('user/index.html.twig', [
+                'form' => $editForm->createView()
             ]);
         }
         return $this->redirectToRoute('app_login');
     }
 
     #[Route('/edit', name: '_edit')]
-    public function editProfile(Request $request, EntityManagerInterface $entityManager, UserPasswordHasherInterface $userPasswordHasher ): Response
+    public function editProfile(Request $request, EntityManagerInterface $entityManager, UserPasswordHasherInterface $userPasswordHasher): Response
     {
-        if($this->getUser() != null) {
+        if ($this->getUser() != null) {
             $userPassword = $this->getUser()->getPassword();
             $user = $this->getUser();
             $editForm = $this->createForm(EditProfileType::class, $this->getUser());
@@ -90,4 +91,28 @@ class UserController extends AbstractController
             "role" => $userRole[0]
         ]);
     }
+
+    #[Route('/teammates', name: '_teammates')]
+    public function teammates(Request $request, UserRepository $userRepository, EntityManagerInterface $entityManager): Response
+    {
+        $currentUser = $this->getUser();
+
+        if ($currentUser == null)
+            return $this->redirectToRoute('app_login');
+
+        $user = $userRepository->find($currentUser->getId());
+
+        /* $u = $userRepository->findAll();
+        $user->addTeammate($u[0]);
+        $entityManager->persist($user);
+        $entityManager->flush(); */
+
+        $teammates = $user->getTeammates();
+
+
+        return $this->render('user/teammates.html.twig', [
+            'teammates' => $teammates,
+        ]);
+    }
+
 }

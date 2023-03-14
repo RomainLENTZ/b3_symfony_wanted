@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HuntersController!
+{% endblock %}
+
+{% block body %}
+	{% for hunter in hunters %}
+
+		{{hunter.username }}
+	{% endfor %}
+
+{% endblock %}
