@@ -57,12 +57,16 @@
 									<p class="price">{{ hunt.bounty|number_format(0,',', ' ') }}
 										$</p>
 
-									{% if role == "ROLE_POLICEMAN" %}
-										<a href="{{ path('app_hunt_close_hunt', {id : hunt.id}) }}">Cloturer</a>
-									{% endif %}
-
 
 								</div>
+
+							</div>
+
+							<div class="bottom-part">
+
+								{% if role == "ROLE_POLICEMAN" %}
+									<a href="{{ path('app_hunt_close_hunt', {id : hunt.id}) }}">Cloturer</a>
+								{% endif %}
 
 							</div>
 

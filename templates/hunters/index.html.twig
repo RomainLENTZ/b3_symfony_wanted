@@ -4,9 +4,48 @@
 {% endblock %}
 
 {% block body %}
-	{% for hunter in hunters %}
 
-		{{hunter.username }}
-	{% endfor %}
+    <div class="hunt-wrapper">
+
+        <div class="top-part">
+            <h1>Tous les chasseurs</h1>
+        </div>
+        <div class="all-hunts all-hunters">
+            {% for hunter in hunters %}
+                <div class="hunt">
+                    <div class="left-part">
+                        {% if hunter.photo|length < 15 %}
+                            <img src="{{ asset('img/user.png') }}" alt="img of the hunt">
+                        {% else %}
+                            <img src="{{ hunter.photo }}" alt="img of the hunt">
+                        {% endif %}
+                    </div>
+                    <div class="right-part">
+                        <div class="top-part">
+                            <div class="left-part">
+                                <h3 class="name">{{ hunter.username }}</h3>
+                                <h5 class="description">{{ hunter.description }}</h5>
+                            </div>
+                            <div class="right-part">
+                                {% if hunter.roles[0] == "ROLE_HUNTER" %}
+                                    <div class="icon">
+                                        <img src="{{ asset('img/target.png') }}" alt="type of user">
+                                    </div>
+                                {% else %}
+                                    <div class="icon">
+                                        <img src="{{ asset('img/police-badge.png') }}" alt="type of user">
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="bottom-part">
+                            <a href="{{ path('app_hunters_add_teammate', {id : hunter.id}) }}">Ajouter</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+    </div>
 
 {% endblock %}

@@ -402,13 +402,21 @@ header .right-part .account p {
 }
 .hunt-wrapper .top-part a {
   position: relative;
-  padding: 10px 15px;
+  padding: 12px 15px;
   font-family: "Sora", sans-serif;
   font-size: 17px;
-  border: none;
+  border: 2px solid #303030;
   border-radius: 5px;
   background: #303030;
   color: white;
+  transition: all 0.35s ease-in-out;
+}
+.hunt-wrapper .top-part a:hover {
+  background: transparent;
+  color: #303030;
+}
+.hunt-wrapper .top-part a:first-child {
+  margin-right: 30px;
 }
 .hunt-wrapper .top-part.huntPassed {
   margin-top: 100px;
@@ -547,7 +555,7 @@ header .right-part .account p {
   padding: 8px 12px;
   font-family: "Sora", sans-serif;
   font-size: 15px;
-  border: none;
+  border: 2px solid white;
   border-radius: 5px;
   background: white;
   color: #303030;
@@ -559,6 +567,36 @@ header .right-part .account p {
 .hunt-wrapper .all-hunts .hunt .right-part .bottom-part a:hover {
   background: #303030;
   color: white;
+}
+.hunt-wrapper .all-hunters .hunt {
+  height: fit-content;
+}
+.hunt-wrapper .all-hunters .hunt .left-part {
+  height: 100%;
+}
+.hunt-wrapper .all-hunters .hunt .left-part img {
+  margin-bottom: 0;
+  margin-top: 10px;
+}
+.hunt-wrapper .all-hunters .hunt .right-part .top-part .right-part {
+  justify-content: center;
+}
+.hunt-wrapper .all-hunters .hunt .right-part .top-part .right-part .icon {
+  position: relative;
+  background: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  height: 45px;
+  width: 45px;
+  border-radius: 5px;
+}
+.hunt-wrapper .all-hunters .hunt .right-part .top-part .right-part .icon img {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
 }
 
 .single-hunt {
@@ -608,6 +646,82 @@ header .right-part .account p {
 }
 .single-hunt .right-part p:first-line {
   line-height: 150%;
+}
+
+.close-hunt-wrapper {
+  position: relative;
+  display: flex;
+  margin: 0 auto;
+  width: 90%;
+  padding: 100px 0;
+  flex-direction: column;
+}
+.close-hunt-wrapper h3 {
+  position: relative;
+  margin-bottom: 50px;
+  font-size: 50px;
+  color: #303030;
+}
+.close-hunt-wrapper form {
+  position: relative;
+  margin-top: 50px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.close-hunt-wrapper form select {
+  position: relative;
+  padding: 5px;
+  color: #303030;
+}
+.close-hunt-wrapper form h5 {
+  position: relative;
+  margin-left: 10px;
+  margin-right: 30px;
+  font-size: 20px;
+  color: #303030;
+}
+.close-hunt-wrapper form button {
+  position: relative;
+  padding: 8px 15px;
+  font-family: "Sora", sans-serif;
+  font-size: 17px;
+  border: none;
+  border-radius: 5px;
+  background: #303030;
+  color: white;
+}
+.close-hunt-wrapper p {
+  position: relative;
+  margin-top: 20px;
+  font-size: 14px;
+  font-weight: 300;
+  color: #30303080;
+}
+.close-hunt-wrapper .button-wrapper {
+  position: relative;
+  margin-top: 50px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.close-hunt-wrapper .button-wrapper a {
+  position: relative;
+  padding: 12px 15px;
+  font-family: "Sora", sans-serif;
+  font-size: 17px;
+  border: 2px solid #303030;
+  border-radius: 5px;
+  background: #303030;
+  color: white;
+  transition: all 0.35s ease-in-out;
+}
+.close-hunt-wrapper .button-wrapper a:hover {
+  background: transparent;
+  color: #303030;
+}
+.close-hunt-wrapper .button-wrapper a:first-child {
+  margin-right: 30px;
 }
 
 /*# sourceMappingURL=style.css.map */

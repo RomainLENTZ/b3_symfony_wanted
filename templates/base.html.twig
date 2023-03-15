@@ -29,13 +29,13 @@
 
     <div class="right-part">
         <a class="hunt" href="{{ path("app_hunt_index_hunt") }}">Hunts</a>
+        <a class="hunt" href="{{ path("app_hunters_index_hunters") }}">Hunters</a>
         {% if app.user %}
             <a class="hunt" href="{{ path("app_user_hunts") }}">Mes chasses</a>
-            <a class="hunt" href="{{ path("app_user_index_user") }}">Mon profil</a>
         {% endif %}
 
         {% if app.user %}
-        <a href="{{ path("app_logout") }}">
+        <a href="{{ path("app_user_index_user") }}">
             {% else %}
             <a href="{{ path("app_login") }}">
                 {% endif %}

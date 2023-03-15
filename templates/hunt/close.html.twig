@@ -3,10 +3,9 @@
 {% block title %}Hello HuntController!{% endblock %}
 
 {% block body %}
-    <div class="container">
+    <div class="close-hunt-wrapper">
         <h1>Cloturer la chasse : {{ hunt.name }}</h1>
-        <p>Veuillez séléctionner un chasseur a qui attribuer la prime de {{ hunt.bounty }} $</p>
-        <p>Si personne na réussi a capturer et que vous souhaitez tout de meme cloturer la chasse séléctionner "Aucun"</p>
+
         <form action="{{ path('app_hunt_close_hunt_proceed') }}" method="post">
             <input type="hidden" id="huntId" name="huntId" value="{{ hunt.id }}"></input>
             <select name="hunters" id="hunters">
@@ -15,7 +14,10 @@
                     <option value="{{ hunter.id }}">{{ hunter.username }}</option>
                 {% endfor %}
             </select>
-            <button type="submit">Cloturer la chasse et attribuer la prime ?</button>
+            <h5>va récupérer la somme de {{ hunt.bounty }} $.</h5>
+            <button type="submit">Valider</button>
         </form>
+
+        <p>( Si personne n'a accompli la chasse, sélectionnez "aucun" )</p>
     </div>
 {% endblock %}

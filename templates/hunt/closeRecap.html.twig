@@ -3,8 +3,18 @@
 {% block title %}Hello HuntController!{% endblock %}
 
 {% block body %}
-    <div class="container">
-        <h1>Cloturer la chasse : "{{ hunt.name }}" à bien étée cloturé</h1>
-        <p><a href="{{ path('app_hunt_index_hunt') }}">Retourner à la liste de chasse</a> ou <a href="{{ path('app_hunt_add_hunt') }}">ajoutez en une nouvelle</a></p>
+
+    <div class="close-hunt-wrapper">
+        <h1>La chasse "{{ hunt.name }}" est désormais clôturée</h1>
+
+        <div class="button-wrapper">
+
+            <a href="{{ path('app_hunt_index_hunt') }}">Retourner chasser</a>
+
+            <a href="{{ path('app_hunt_add_hunt') }}">Ajouter une chasse</a>
+
+        </div>
+
     </div>
+
 {% endblock %}
