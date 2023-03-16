@@ -18,7 +18,7 @@ class TargetType extends AbstractType
             ->add('name', TextType::class)
             ->add('description', TextareaType::class)
             ->add('image', TextType::class)
-            ->add('save', SubmitType::class)
+            ->add('Continuer', SubmitType::class)
             ->setMethod('POST')
             ->setAction('add')
         ;

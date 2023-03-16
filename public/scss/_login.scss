@@ -1,4 +1,4 @@
-#login {
+#login, #target-wrapper {
   position: relative;
   height: calc(100vh - 110px);
   width: 100vw;
@@ -98,6 +98,56 @@
       margin-left: 5px;
       text-decoration: 1px solid underline;
       text-underline-offset: 1px;
+    }
+
+  }
+
+}
+
+#target, #hunt, #edit_profile {
+
+  div {
+    position: relative;
+    margin: 0 !important;
+    display: flex;
+    flex-direction: column !important;
+    width: 100% !important;
+
+    label {
+      position: relative;
+      font-size: 30px;
+      font-weight: 300;
+      width: 100% !important;
+      margin-top: 15px !important;
+      color: white;
+    }
+
+    input {
+      text-indent: 0 !important;
+    }
+
+    &:first-child {
+
+      label {
+        margin-top: 0 !important;
+      }
+
+    }
+
+    textarea {
+      max-height: 200px !important;
+    }
+
+    button {
+      position: relative;
+      padding: 5px 13px !important;
+      margin: 30px auto 0 !important;
+      font-family: "Sora", sans-serif !important;
+      font-size: 20px !important;
+      border: none !important;
+      border-radius: 5px !important;
+      background: white !important;
+      color: $gray !important;
     }
 
   }
