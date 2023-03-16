@@ -5,10 +5,47 @@
 
 {% block body %}
 
+	<div class="hunt-wrapper">
 
-	{% for teammate in teammates %}
-		{{ teammate.username }}
-	{% endfor %}
+		<a class="goBack" href="{{ path("app_hunters_index_hunters") }}">Retour</a>
+
+		<div class="top-part">
+			<h1>Mes coéquipiers</h1>
+		</div>
+		<div class="all-hunts all-hunters">
+			{% for teammate in teammates %}
+				<div class="hunt">
+					<div class="left-part">
+						{% if teammate.photo|length < 15 %}
+							<img src="{{ asset('img/user.png') }}" alt="img of the hunt">
+						{% else %}
+							<img src="{{ teammate.photo }}" alt="img of the hunt">
+						{% endif %}
+					</div>
+					<div class="right-part">
+						<div class="top-part">
+							<div class="left-part">
+								<h3 class="name">{{ teammate.username }}</h3>
+								<h5 class="description">{{ teammate.description }}</h5>
+							</div>
+							<div class="right-part">
+								{% if teammate.roles[0] == "ROLE_HUNTER" %}
+									<div class="icon">
+										<img src="{{ asset('img/target.png') }}" alt="type of user">
+									</div>
+								{% else %}
+									<div class="icon">
+										<img src="{{ asset('img/police-badge.png') }}" alt="type of user">
+									</div>
+								{% endif %}
+							</div>
+						</div>
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+
+	</div>
 
 
 {% endblock %}

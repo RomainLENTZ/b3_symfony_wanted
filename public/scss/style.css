@@ -154,7 +154,7 @@ header .right-part .account p {
   object-fit: cover;
 }
 
-#login {
+#login, #target-wrapper {
   position: relative;
   height: calc(100vh - 110px);
   width: 100vw;
@@ -163,13 +163,13 @@ header .right-part .account p {
   align-items: center;
   justify-content: center;
 }
-#login h2 {
+#login h2, #target-wrapper h2 {
   position: relative;
   margin: 0 auto 30px;
   font-size: 50px;
   color: #303030;
 }
-#login .login-wrapper {
+#login .login-wrapper, #target-wrapper .login-wrapper {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -177,7 +177,7 @@ header .right-part .account p {
   background: #303030;
   border-radius: 5px;
 }
-#login .login-wrapper form {
+#login .login-wrapper form, #target-wrapper .login-wrapper form {
   position: relative;
   height: 100%;
   width: 100%;
@@ -186,7 +186,7 @@ header .right-part .account p {
   justify-content: center;
   align-items: start;
 }
-#login .login-wrapper form label {
+#login .login-wrapper form label, #target-wrapper .login-wrapper form label {
   position: relative;
   margin-bottom: 10px;
   font-family: "Sora", sans-serif;
@@ -197,7 +197,10 @@ header .right-part .account p {
 #login .login-wrapper form input, #login .login-wrapper form input:-webkit-autofill,
 #login .login-wrapper form input:-webkit-autofill:hover,
 #login .login-wrapper form input:-webkit-autofill:focus,
-#login .login-wrapper form input:-webkit-autofill:active {
+#login .login-wrapper form input:-webkit-autofill:active, #target-wrapper .login-wrapper form input, #target-wrapper .login-wrapper form input:-webkit-autofill,
+#target-wrapper .login-wrapper form input:-webkit-autofill:hover,
+#target-wrapper .login-wrapper form input:-webkit-autofill:focus,
+#target-wrapper .login-wrapper form input:-webkit-autofill:active {
   position: relative;
   font-family: "Sora", sans-serif;
   font-size: 20px !important;
@@ -213,10 +216,10 @@ header .right-part .account p {
   color: #303030 !important;
   border-radius: 5px;
 }
-#login .login-wrapper form .first {
+#login .login-wrapper form .first, #target-wrapper .login-wrapper form .first {
   margin-bottom: 30px;
 }
-#login .login-wrapper form button {
+#login .login-wrapper form button, #target-wrapper .login-wrapper form button {
   position: relative;
   padding: 5px 13px;
   margin: 30px auto 0;
@@ -225,7 +228,7 @@ header .right-part .account p {
   border: none;
   border-radius: 5px;
 }
-#login .no-account {
+#login .no-account, #target-wrapper .no-account {
   position: relative;
   margin: 20px auto 0;
   display: flex;
@@ -233,17 +236,53 @@ header .right-part .account p {
   justify-content: center;
   align-items: center;
 }
-#login .no-account p, #login .no-account a {
+#login .no-account p, #login .no-account a, #target-wrapper .no-account p, #target-wrapper .no-account a {
   position: relative;
   font-size: 15px;
   font-weight: 300;
   text-decoration: none;
   color: #303030;
 }
-#login .no-account a {
+#login .no-account a, #target-wrapper .no-account a {
   margin-left: 5px;
   text-decoration: 1px solid underline;
   text-underline-offset: 1px;
+}
+
+#target div, #hunt div, #edit_profile div {
+  position: relative;
+  margin: 0 !important;
+  display: flex;
+  flex-direction: column !important;
+  width: 100% !important;
+}
+#target div label, #hunt div label, #edit_profile div label {
+  position: relative;
+  font-size: 30px;
+  font-weight: 300;
+  width: 100% !important;
+  margin-top: 15px !important;
+  color: white;
+}
+#target div input, #hunt div input, #edit_profile div input {
+  text-indent: 0 !important;
+}
+#target div:first-child label, #hunt div:first-child label, #edit_profile div:first-child label {
+  margin-top: 0 !important;
+}
+#target div textarea, #hunt div textarea, #edit_profile div textarea {
+  max-height: 200px !important;
+}
+#target div button, #hunt div button, #edit_profile div button {
+  position: relative;
+  padding: 5px 13px !important;
+  margin: 30px auto 0 !important;
+  font-family: "Sora", sans-serif !important;
+  font-size: 20px !important;
+  border: none !important;
+  border-radius: 5px !important;
+  background: white !important;
+  color: #303030 !important;
 }
 
 #register {
@@ -380,11 +419,17 @@ header .right-part .account p {
   width: fit-content;
   margin-bottom: 50px;
   padding: 10px 18px;
+  border: 2px solid #303030;
   border-radius: 5px;
   font-family: "Sora", sans-serif;
   font-size: 23px;
   color: white;
   background: #303030;
+  transition: all 0.35s ease-in-out;
+}
+.hunt-wrapper .goBack:hover {
+  background: transparent;
+  color: #303030;
 }
 .hunt-wrapper .top-part {
   position: relative;
@@ -597,6 +642,71 @@ header .right-part .account p {
   height: 100%;
   width: 100%;
   object-fit: cover;
+}
+.hunt-wrapper .login-global-wrapper {
+  position: relative;
+  margin: 75px auto 0;
+  width: 30vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.hunt-wrapper .login-global-wrapper .login-wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 30px;
+  background: #303030;
+  border-radius: 5px;
+}
+.hunt-wrapper .login-global-wrapper .login-wrapper #edit form {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+}
+.hunt-wrapper .login-global-wrapper .login-wrapper #edit form label {
+  position: relative;
+  margin-bottom: 10px;
+  font-family: "Sora", sans-serif;
+  font-weight: 300;
+  font-size: 30px;
+  color: white;
+}
+.hunt-wrapper .login-global-wrapper .login-wrapper #edit form input, .hunt-wrapper .login-global-wrapper .login-wrapper #edit form input:-webkit-autofill,
+.hunt-wrapper .login-global-wrapper .login-wrapper #edit form input:-webkit-autofill:hover,
+.hunt-wrapper .login-global-wrapper .login-wrapper #edit form input:-webkit-autofill:focus,
+.hunt-wrapper .login-global-wrapper .login-wrapper #edit form input:-webkit-autofill:active {
+  position: relative;
+  font-family: "Sora", sans-serif;
+  font-size: 20px !important;
+  height: 50px;
+  width: 300px;
+  outline: none;
+  border: none;
+  text-indent: 15px;
+  background-image: none !important;
+  background-color: white !important;
+  -webkit-text-fill-color: #303030 !important;
+  -webkit-box-shadow: 0 0 0 30px white inset !important;
+  color: #303030 !important;
+  border-radius: 5px;
+}
+.hunt-wrapper .login-global-wrapper .login-wrapper #edit form .first {
+  margin-bottom: 30px;
+}
+.hunt-wrapper .login-global-wrapper .login-wrapper #edit form button {
+  position: relative;
+  padding: 5px 13px;
+  margin: 30px auto 0;
+  font-family: "Sora", sans-serif;
+  font-size: 20px;
+  border: none;
+  border-radius: 5px;
 }
 
 .single-hunt {

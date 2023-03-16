@@ -19,7 +19,7 @@ class HuntType extends AbstractType
         $builder
             ->add('name', TextType::class)
             ->add('bounty', IntegerType::class)
-            ->add('save', SubmitType::class)
+            ->add('Valider', SubmitType::class)
             ->setMethod("POST")
             ->setAction('save')
         ;
