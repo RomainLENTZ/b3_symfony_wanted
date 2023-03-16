@@ -2,6 +2,8 @@ Projet symfony : Wanted
 =======================
 * Nom du projet : Wanted 
 * Groupe : Loïc GRECO, Yohan QUINQUIS, Romain LENTZ
+* Technologies utilisées : PHP 8.2.2, Symfony, SQLITE, CSS, TWIG, GitHub
+* Lien du git : https://github.com/RomainLENTZ/B3-Wanted.git
 
 > Wanted est un site web professionnel mettant en relation des policier et des tueurs à gage.
 > Un policier peux poster un contrat concernant une victime et un tueur a gage peut alors s'attribuer
@@ -54,3 +56,10 @@ Fonctionnalités :
 > * Chasseur: utilisateur pouvant participer à un avis de recherche
 >
 > Tous les utilisateurs peuvent en plus : s'inscrire, se connecter et modifier leur profile.
+
+Relation de hiérarchie :
+------------------------
+
+
+
+

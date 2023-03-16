@@ -5,60 +5,58 @@
 
 {% block body %}
     <div class="hunt-wrapper">
-
-    <div class="top-part">
-        <h1>Toutes les chasses</h1>
-        {% if app.user %}
-            {% if app.user.roles[0] == "ROLE_POLICEMAN" %}
-                <a href="{{ path('app_hunt_form_hunt') }}">Ajouter</a>
-            {% endif %}
-        {% endif %}
-    </div>
-    <div class="all-hunts">
-        {% for hunt in hunts %}
-        {% if hunt.isOpen %}
-        <div class="hunt">
-            {% if app.user is not null and app.user.roles[0] == "ROLE_HUNTER" and myHunts[loop.index - 1] %}
-                <div class="isMyHunts">
-                    <img src="{{ asset('img/check.png') }}" alt="Vous chassez cette personne">
-                </div>
-            {% endif %}
-            <div class="left-part">
-                {% if hunt.target.image|length < 15 %}
-                    <img src="{{ asset('img/user.png') }}" alt="img of the hunt">
-                {% else %}
-                    <img src="{{ hunt.target.image }}" alt="img of the hunt">
+        <div class="top-part">
+            <h1>Toutes les chasses</h1>
+            {% if app.user %}
+                {% if app.user.roles[0] == "ROLE_POLICEMAN" %}
+                    <a href="{{ path('app_hunt_form_hunt') }}">Ajouter</a>
                 {% endif %}
-                <p class="date">{{ hunt.createdAt|date('Y/m/d') }}</p>
-            </div>
-            <div class="right-part">
-                <div class="top-part">
-                    <div class="left-part">
-                        <h3 class="name">{{ hunt.target.name }}</h3>
-                        <h5 class="description">{{ hunt.target.description }}</h5>
-                    </div>
-                    <div class="right-part">
-                        <p class="price">{{ hunt.bounty|number_format(0,',', ' ') }}
-                            $</p>
-                    </div>
-                </div>
-                <div class="bottom-part">
-                    {% if app.user %}
-                        {% if app.user.roles[0] == "ROLE_HUNTER" and not myHunts[loop.index - 1] %}
-                            <a href="{{ path('app_hunt_user_get_hunt', {id : hunt.id}) }}">Participer</a>
-                        {% endif %}
-                    {% endif %}
-                    <a href="{{ path('app_hunt_hunt', {id : hunt.id}) }}">Détails</a>
-                    {% if hunt.author is not null and hunt.author == app.user %}
-                        <a href="{{ path('app_hunt_close_hunt',{id : hunt.id}) }}">Cloturer</a>
-                    {% endif %}
-                </div>
-            </div>
+            {% endif %}
         </div>
-    </div>
-    {% endif %}
-    {% endfor %}
-
+        <div class="all-hunts">
+            {% for hunt in hunts %}
+                {% if hunt.isOpen %}
+                    <div class="hunt">
+                        {% if app.user is not null and app.user.roles[0] == "ROLE_HUNTER" and myHunts[loop.index - 1] %}
+                            <div class="isMyHunts">
+                                <img src="{{ asset('img/check.png') }}" alt="Vous chassez cette personne">
+                            </div>
+                        {% endif %}
+                        <div class="left-part">
+                            {% if hunt.target.image|length < 15 %}
+                                <img src="{{ asset('img/user.png') }}" alt="img of the hunt">
+                            {% else %}
+                                <img src="{{ hunt.target.image }}" alt="img of the hunt">
+                            {% endif %}
+                            <p class="date">{{ hunt.createdAt|date('Y/m/d') }}</p>
+                        </div>
+                        <div class="right-part">
+                            <div class="top-part">
+                                <div class="left-part">
+                                    <h3 class="name">{{ hunt.target.name }}</h3>
+                                    <h5 class="description">{{ hunt.target.description }}</h5>
+                                </div>
+                                <div class="right-part">
+                                    <p class="price">{{ hunt.bounty|number_format(0,',', ' ') }}
+                                        $</p>
+                                </div>
+                            </div>
+                            <div class="bottom-part">
+                                {% if app.user %}
+                                    {% if app.user.roles[0] == "ROLE_HUNTER" and not myHunts[loop.index - 1] %}
+                                        <a href="{{ path('app_hunt_user_get_hunt', {id : hunt.id}) }}">Participer</a>
+                                    {% endif %}
+                                {% endif %}
+                                <a href="{{ path('app_hunt_hunt', {id : hunt.id}) }}">Détails</a>
+                                {% if hunt.author is not null and hunt.author == app.user %}
+                                    <a href="{{ path('app_hunt_close_hunt',{id : hunt.id}) }}">Cloturer</a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
     {# <style>
 		.example-wrapper {
 			margin: 1em auto;
