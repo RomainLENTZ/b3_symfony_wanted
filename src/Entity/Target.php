@@ -26,10 +26,6 @@ class Target
     #[ORM\OneToOne(mappedBy: 'target', cascade: ['persist', 'remove'])]
     private ?Hunt $hunt = null;
 
-    public function __construct(){
-        $this->image = "https://api.dicebear.com/5.x/pixel-art/png?seed=".rand(0,100);
-    }
-
     public function getId(): ?int
     {
         return $this->id;
