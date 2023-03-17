@@ -13,7 +13,7 @@
 
             <div class="left-part">
 
-                {% if hunt.target.image|length < 15 %}
+                {% if hunt.target.image|length < 15 and hunt.target.image is not null %}
                     <img src="{{ asset('img/user.png') }}" alt="img of the hunt">
                 {% else %}
                     <img src="{{ hunt.target.image }}" alt="img of the hunt">

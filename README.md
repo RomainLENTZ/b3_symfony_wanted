@@ -61,5 +61,29 @@ Relation de hiérarchie :
 ------------------------
 
 
+Ajouter une chasse :
+---------------------
+> Pour ajouter une chasse il faut avoir un compte crée en temps que policer et être connecté.
+> Ensuite cliquer sur "Hunts" dans le header, puis sur "Ajouter une chasse" vous devrez ensuite ajouter une "target" 
+> une fois la target renseignée, vous pourrez continuer a créer la chasse. Une fois tous les champs renseigné, vous serez 
+> redirigier vers la page des "Hunts" et vous verrez apparaitre votre chasse.
+> 
+> *Note: vous pouvez retrouver vos chassesa tout moment en cliquant sur "mes chasses" dans le header*
 
+Cloturer une chasse :
+---------------------
+>Vous pouvez cloturer une chasse soit depuis la page "mes chasses" soit depuis l'onglet "Hunts". Pour ce faire
+> cliquer sur le bouton "cloturer" se trouvant a coté du titre. Vous serez redirigé vers un formulaire vous demandant de choisir 
+> un utilisateur a qui reverser la sommes associée à la chasse. Une fois fermée, la chasse apparaitra alors sous le titre "chasse terminées".
 
+Ajouter un hunter à ca brigade :
+--------------------------------
+>Pour ajouter un hunter à sa brigade, cliquer sur "hunters" dans ke header puis sur "ajouter" sur sur le heuter que vous souhaitez accueillir.
+
+Participer à une chasse : 
+-------------------------
+>Pour participer à une chasse, il faut être connecté en temps que "hunter". Ensuite, cliquer sur "hunts" puis sur participer à coté de la chasse à laquelle vous souhaitez participer
+
+Modifier son profile :
+----------------------
+> Il est possible de modifier son profile à tout moment en cliquant sur votre pseudo en haut à gauche.

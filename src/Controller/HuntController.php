@@ -77,6 +77,7 @@ class HuntController extends AbstractController
 
         $hunt = new Hunt();
         $concernedTargetId = $request->getSession()->getFlashBag()->get('targetId');
+
         $hunt->setTarget($targetRepository->find($concernedTargetId[0]));
         $hunt->setAuthor($this->getUser());
         $huntForm = $this->createForm(HuntType::class, $hunt);

@@ -50,6 +50,17 @@ class HuntRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+    public function findHuntIsOpenByTargetName($targetName)
+    {
+        return  $this->createQueryBuilder('h')
+            ->select('h.id', 'h.isOpen')
+            ->join('h.target', 't')
+            ->where('t.name = :targetName')
+            ->setParameter('targetName', $targetName)
+            ->getQuery()
+            ->getResult();
+    }
+
 //    /**
 //     * @return Hunt[] Returns an array of Hunt objects
 //     */

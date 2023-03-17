@@ -12,7 +12,9 @@
         <div class="login-wrapper">
 
             {{ form(form) }}
-
+            {% if message is not null %}
+                <p class="text-danger">{{message}}</p>
+            {% endif %}
         </div>
 
     </section>
