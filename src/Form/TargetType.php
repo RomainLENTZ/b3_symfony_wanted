@@ -15,9 +15,15 @@ class TargetType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('name', TextType::class)
-            ->add('description', TextareaType::class)
-            ->add('image', TextType::class)
+            ->add('name', TextType::class, [
+                "label" => "Nom"
+            ])
+            ->add('description', TextareaType::class, [
+                "label" => "Description"
+            ])
+            ->add('image', TextType::class, [
+                "label" => "Photo"
+            ])
             ->add('Continuer', SubmitType::class)
             ->setMethod('POST')
             ->setAction('add')

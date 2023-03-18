@@ -17,8 +17,12 @@ class HuntType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('name', TextType::class)
-            ->add('bounty', IntegerType::class)
+            ->add('name', TextType::class, [
+                "label" => "Nom"
+                ])
+            ->add('bounty', IntegerType::class, [
+                "label" => "Prime"
+            ])
             ->add('Valider', SubmitType::class)
             ->setMethod("POST")
             ->setAction('save')
