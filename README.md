@@ -4,6 +4,7 @@ Projet symfony : Wanted
 * Groupe : Loïc GRECO, Yohan QUINQUIS, Romain LENTZ
 * Technologies utilisées : PHP 8.2.2, Symfony (5.4.21), SQLITE, SCSS, TWIG, GitHub
 * Lien du git : https://github.com/RomainLENTZ/B3-Wanted.git
+* Lien du site : http://vps-080d9e1e.vps.ovh.net:8000/
  
 __________________________________
 Comment contribuer au projet :
