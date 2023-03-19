@@ -45,7 +45,7 @@ Aspect technique :
 >   * photo:String
 >   * hunts:Collection (OneToMany) : liste de chasse dont l'utilisateur est l'auteur
 >   * myHunts:Collection (ManyToMany) : liste de chasse auxquelles participe l'utilisateur
->   * waller:Wallet (OneToOne) : portefeuille de l'utilisateur dans lequel il recoit ses primes
+>   * waller:Wallet (OneToOne) : portefeuille de l'utilisateur dans lequel il recoit ses primes ( crée automatiquement lors de la création du compte )
 > * Target (entité représentant une cible)
 >   * id
 >   * name:String
