@@ -88,7 +88,7 @@ Cloturer une chasse :
 
 Ajouter un hunter à ca brigade :
 --------------------------------
->Pour ajouter un hunter à sa brigade, cliquer sur "hunters" dans ke header puis sur "ajouter" sur sur le heuter que vous souhaitez accueillir.
+>Pour ajouter un hunter à sa brigade, cliquer sur "hunters" dans le header puis sur "ajouter" sur sur le heuter que vous souhaitez accueillir.
 
 Participer à une chasse : 
 -------------------------
