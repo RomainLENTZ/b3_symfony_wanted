@@ -466,6 +466,27 @@ header .right-part .account p {
 .hunt-wrapper .top-part.huntPassed {
   margin-top: 100px;
 }
+.hunt-wrapper .top-part.noMargin {
+  margin-bottom: 15px;
+}
+.hunt-wrapper .wallet {
+  position: relative;
+  margin-bottom: 40px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-family: "Sora", sans-serif;
+  font-size: 20px;
+  color: #303030;
+}
+.hunt-wrapper .wallet span {
+  position: relative;
+  padding: 3px 7px;
+  background: #303030;
+  border-radius: 5px;
+  color: white;
+  margin-right: 10px;
+}
 .hunt-wrapper .all-hunts {
   position: relative;
   display: grid;

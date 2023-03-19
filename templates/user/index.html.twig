@@ -7,10 +7,23 @@
 
     <div class="hunt-wrapper">
 
-        <div class="top-part">
-            <h1>Modifier mon profil</h1>
-            <a href="{{ path('app_logout') }}">Déconnexion</a>
-        </div>
+        {% if app.user is not null and app.user.roles[0] == "ROLE_HUNTER" and user.wallet != null %}
+
+            <div class="top-part noMargin">
+                <h1>Modifier mon profil</h1>
+                <a href="{{ path('app_logout') }}">Déconnexion</a>
+            </div>
+
+            <p class="wallet"><span>Wallet</span> {{ user.wallet.amount }} $</p>
+
+            {% else %}
+
+                <div class="top-part">
+                    <h1>Modifier mon profil</h1>
+                    <a href="{{ path('app_logout') }}">Déconnexion</a>
+                </div>
+
+        {% endif %}
 
         <div class="login-global-wrapper">
 

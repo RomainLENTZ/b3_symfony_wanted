@@ -21,7 +21,8 @@ class UserController extends AbstractController
         if ($this->getUser() != null) {
             $editForm = $this->createForm(EditProfileType::class, $this->getUser());
             return $this->render('user/index.html.twig', [
-                'form' => $editForm->createView()
+                'form' => $editForm->createView(),
+                'user' => $this->getUser()
             ]);
         }
         return $this->redirectToRoute('app_login');
