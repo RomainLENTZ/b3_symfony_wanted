@@ -96,4 +96,4 @@ Participer à une chasse :
 
 Modifier son profile :
 ----------------------
-> Il est possible de modifier son profile à tout moment en cliquant sur votre pseudo en haut à gauche.
+> Il est possible de modifier son profile à tout moment en cliquant sur votre pseudo en haut à droite.
